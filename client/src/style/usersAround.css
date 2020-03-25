@@ -1,0 +1,48 @@
+.usersParent {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top : 1%;
+    height: 85%;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    padding: 2%;
+    display: flex;
+}
+
+.usersMenu {
+    width: auto;
+    background-color: whitesmoke;
+    flex: 0.4;
+}
+
+.usersCont {
+    display: flex;
+    flex-direction: column;
+    flex: 0.6;
+    padding: 1%;
+}
+
+.usersUser {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 2%;
+    margin-bottom: 1%;
+    border-radius: 10px;
+}
+
+.usersUser:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+.usersUser p {
+    text-decoration: None;
+    color: black;
+    margin-left: 5%;
+}
+
+.usersUser img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}

@@ -1,0 +1,24 @@
+.editParent {
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 2%;
+    height: 85%;
+    background-color: whitesmoke;
+}
+
+.editParent form {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+}
+
+.editParent label {
+    margin-bottom: 2%;
+}
+
+.editParent * {
+    margin-bottom: 5%;
+}

@@ -1,0 +1,37 @@
+/* main container */
+.signParent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+/* form box */
+.signParent form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10%;
+}
+
+/* form labels */
+.signParent label {
+  margin-bottom: 7%;
+}
+  
+/* error div */
+.signError {
+  color: red;
+}
+  
+.signErrors {
+  margin-top: 5%;
+}
+  
+.signLink {
+  margin-top: 5%;
+} 

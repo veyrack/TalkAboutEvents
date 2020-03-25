@@ -1,0 +1,28 @@
+/* container principal */
+
+.navigbar {
+    background-color: rgb(0, 157, 255);
+    display: flex;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+/* liens dans la barre de navigation */
+.navigbar .link {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 1%;
+}
+
+/* liens au survol dans la barre de navigation */
+.navigbar .link:hover {
+    text-decoration: none;
+    background-color: rgb(3, 128, 206);
+    border-radius: 5px;
+}
+
+
+.navigbar :nth-child(2) {
+    margin-left: auto;
+}
