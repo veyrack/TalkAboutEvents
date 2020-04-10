@@ -10,12 +10,22 @@
 }
 
 /* form box */
+.formBox {
+  background-color: rgb(49, 195, 202);
+  border-radius: 25px;
+}
+
+.formSubmit {
+  border-radius: 8px;
+}
+
 .signParent form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 10%;
+
 }
 
 /* form labels */
@@ -35,3 +45,61 @@
 .signLink {
   margin-top: 5%;
 } 
+
+
+/*--- Partie pour les entrées de formulaire ---*/
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+
+}
+.form__field {
+  font-family: inherit;
+  border: 0;
+  border-bottom: 2px solid #f8f8f8;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.form__field::placeholder {
+  color: transparent;
+}
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #ffffff;
+}
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 500;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #8bf5f5 , #1bc4b6);
+  border-image-slice: 1;
+}
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #8bf5f5;
+  font-weight: 500;
+}
+/* reset input */
+.form__field:required, .form__field:invalid {
+  box-shadow: none;
+}
+
+/*-------------------------------*/

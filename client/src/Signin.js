@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { Navigbar } from "./Navigbar";
 import User from "./User";
+import "./style/bootstrap.min.css"
 
 export class Signin extends Component {
   constructor(props) {
@@ -53,31 +54,36 @@ export class Signin extends Component {
 
   render() {
     return (
-      <div className="mainDiv">
+      <div className="mainDiv ">
         <Navigbar islog="false" />
-        <div className="signParent">
+        <div className="formBox signParent p-3">
           <form onSubmit={this.handleSubmit}>
-            <label>
-              Email : <br />
+
+              <div className="form__group field">
               <input
                 type="email"
                 name="email"
+                className="form__field"
                 value={this.state.email}
                 placeholder="email@example.com"
                 onChange={this.handleChange}
               />
-            </label>
+              <label for="email" className="form__label"><strong>Email :</strong></label>
+              </div>
+
             <br />
 
-            <label>
-              Mot de passe : <br />
+            <div className="form__group field">
               <input
                 type="password"
                 name="password"
+                className="form__field"
                 value={this.state.password}
+                placeholder="Mot de passe"
                 onChange={this.handleChange}
               />
-            </label>
+              <label for="password" className="form__label"><strong>Mot de passe :</strong></label>
+              </div>
             <br />
 
             <input
@@ -89,7 +95,7 @@ export class Signin extends Component {
           </form>
 
           <p className="signLink">
-            Pas encore de compte ? <Link to="./signup"> en créer un </Link>
+          <strong>Pas encore de compte ? </strong><Link to="./signup"> en créer un </Link>
           </p>
         </div>
       </div>

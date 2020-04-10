@@ -33,11 +33,11 @@ export class Navigbar extends Component {
         </Link>
         {this.props.islog === "true" ? (
           <Link className="link" to="/signout">
-            Déconnection
+            Déconnexion
           </Link>
         ) : (
             <Link className="link" to="/signin">
-              Connection
+              Connexion
             </Link>
           )}
       </nav>

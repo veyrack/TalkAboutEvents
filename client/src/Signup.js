@@ -98,42 +98,46 @@ export class Signup extends Component {
     return (
       <div className="mainDiv">
         <Navigbar islog="false" />
-        <div className="signParent" method="none">
+        <div className="formBox signParent p-3" method="none">
           <form onSubmit={this.handleSubmit}>
-            <label>
-              Pseudo : <br />
+          <div className="form__group field">
               <input
                 type="text"
                 name="pseudo"
                 value={this.state.pseudo}
+                className="form__field"
                 placeholder="Pseudo"
                 onChange={this.handleChange}
               />
-            </label>
+              <label for="email" className="form__label"><strong>Pseudo :</strong></label>
+            </div>
 
-            <label>
-              Email : <br />
+            <div className="form__group field">
               <input
                 type="email"
                 name="email"
+                className="form__field"
                 value={this.state.email}
                 placeholder="email@example.com"
                 onChange={this.handleChange}
               />
-            </label>
+              <label for="email" className="form__label"><strong>Email :</strong></label>
+              </div>
 
-            <label>
-              Mot de passe : <br />
+            <div className="form__group field">
               <input
                 type="password"
                 name="password"
+                className="form__field"
                 value={this.state.password}
+                placeholder="password"
                 onChange={this.handleChange}
               />
-            </label>
-
+              <label for="email" className="form__label"><strong>Mot de passe :</strong></label>
+              </div>
+            <br/>
             <label>
-              Homme
+            <font color="white" size="5"><strong>Homme </strong> </font>
               <input
                 type="radio"
                 name="gender"
@@ -144,7 +148,7 @@ export class Signup extends Component {
             </label>
 
             <label>
-              Femme
+            <font color="white" size="5"><strong>Femme </strong> </font>
               <input
                 type="radio"
                 name="gender"
@@ -156,7 +160,7 @@ export class Signup extends Component {
             <input
               type="submit"
               className="formSubmit"
-              value="Create an account"
+              value="Creer un compte"
               disabled={this.state.formGotError}
             />
           </form>
@@ -167,10 +171,7 @@ export class Signup extends Component {
             <label className="signError">{this.state.passError}</label>
           </div>
           <p>
-            Déjà un comtpe ?
-            <Link className="signLink" to="./signin">
-              se connecter
-            </Link>
+          <strong>Déjà un comtpe ?</strong> <Link className="signLink" to="./signin"> se connecter</Link>
           </p>
         </div>
       </div>
