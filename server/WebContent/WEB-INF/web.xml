@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>TalkAboutEvents</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <servlet>
-    <servlet-name>Test</servlet-name>
-    <servlet-class>Test</servlet-class>
-    
-    <load-on-startup>1</load-on-startup>
+    <servlet-name>servlet_signin</servlet-name>
+    <servlet-class>user.servlets.SignIn_svlt</servlet-class>
   </servlet>
   <servlet-mapping>
-        <servlet-name>Test</servlet-name>
-        <url-pattern>/test</url-pattern>
-   </servlet-mapping>
+    <servlet-name>servlet_signin</servlet-name>
+    <url-pattern>/signin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>servlet_signup</servlet-name>
+    <servlet-class>user.servlets.SignUp_svlt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servlet_signup</servlet-name>
+    <url-pattern>/signup</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>servlet_search_event</servlet-name>
+    <servlet-class>event.servlets.Search_svlt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servlet_search_event</servlet-name>
+    <url-pattern>/event</url-pattern>
+  </servlet-mapping>
 </web-app>
