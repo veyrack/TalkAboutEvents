@@ -4,7 +4,7 @@ Les exemples suivant sont donnés pour ubuntu 18.04, trouvez les commandes équi
 
 ## Installation de la base de données
 
-Installation de mysql : 
+Installation de mysql : `sudo apt install mysql-server`
 
 
 **Les commandes suivantes sont à effectués depuis le repertoire server :**
