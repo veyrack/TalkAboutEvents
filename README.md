@@ -27,7 +27,7 @@ Dons de privilèges sur la bdd :
 
 Remplissage de la bdd :
 
-`SOURCE talkaboutevents.sql`
+`SOURCE talkaboutevents.sql;`
 
 ## Lancement de serveur 
 
