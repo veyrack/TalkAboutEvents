@@ -4,7 +4,8 @@ import axios from "axios";
 
 import { Navigbar } from "./Navigbar";
 import User from "./User";
-import "./style/bootstrap.min.css"
+import "./style/bootstrap.min.css";
+import Config from "./Config";
 
 export class Signin extends Component {
   constructor(props) {
@@ -30,14 +31,19 @@ export class Signin extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await axios.post("/login", {
-        email: this.state.email,
-        password: this.state.password
-      });
+      const response = await axios.get(Config.BASE_URI + "/signin?email=" + this.state.email + "&mdp=" + this.state.password
+        // , {
+        //   pseudo: this.state.pseudo,
+        //   password: this.state.password
+        // }
+      );
       if (response.status === 200) {
-        User.update().then(() => {
-          this.props.history.push("/");
-        });
+        console.log("OK 2000000");
+        User.login(response.data);
+        this.props.history.push("/");
+        // User.update().then(() => {
+        //   this.props.history.push("/");
+        // });
       }
     } catch (error) {
       console.log("ERREUR :", error);
@@ -59,7 +65,7 @@ export class Signin extends Component {
         <div className="formBox signParent p-3">
           <form onSubmit={this.handleSubmit}>
 
-              <div className="form__group field">
+            <div className="form__group field">
               <input
                 type="email"
                 name="email"
@@ -69,7 +75,7 @@ export class Signin extends Component {
                 onChange={this.handleChange}
               />
               <label for="email" className="form__label"><strong>Email :</strong></label>
-              </div>
+            </div>
 
             <br />
 
@@ -83,7 +89,7 @@ export class Signin extends Component {
                 onChange={this.handleChange}
               />
               <label for="password" className="form__label"><strong>Mot de passe :</strong></label>
-              </div>
+            </div>
             <br />
 
             <input
@@ -95,7 +101,7 @@ export class Signin extends Component {
           </form>
 
           <p className="signLink">
-          <strong>Pas encore de compte ? </strong><Link to="./signup"> en créer un </Link>
+            <strong>Pas encore de compte ? </strong><Link to="./signup"> en créer un </Link>
           </p>
         </div>
       </div>

@@ -22,15 +22,17 @@ export class Navigbar extends Component {
         <Link className="link" to="/">
           TalkAboutEvents
         </Link>
-        <Link
-          className="link"
-          to={{
-            pathname: "/profil/",
-            search: "?id=" + User.getId()
-          }}
-        >
-          Profil
-        </Link>
+        {this.props.islog === "true" ? (
+          <Link
+            className="link"
+            to={{
+              pathname: "/profil/",
+              search: "?id=" + User.getId()
+            }}
+          >
+            Profil
+          </Link>
+        ) : null}
         {this.props.islog === "true" ? (
           <Link className="link" to="/signout">
             Déconnexion

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import User from "./User";
 
 export class Events extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export class Events extends Component {
   render() {
     return (
       <div className="eventsParent">
-        <p>Events</p>
+        <p>Bonjour {User.getPseudo()}, id : {User.getId()}</p>
       </div>
     );
   }

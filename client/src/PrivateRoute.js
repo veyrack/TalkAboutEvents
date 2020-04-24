@@ -10,17 +10,13 @@ class PrivateRoute extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      loading: false,
-      isLoggedIn: false
+    //on verifie si l'utilisateur est connecter, sinon on redirige vers /signin
+    User.getIsLoggedIn().then(islog => {
+      this.setState({
+        loading: false,
+        isLoggedIn: islog
+      });
     });
-    // on verifie si l'utilisateur est connecter, sinon on redirige vers /signin
-    // User.getIsLoggedIn().then(islog => {
-    //   this.setState({
-    //     loading: false,
-    //     isLoggedIn: islog
-    //   });
-    // });
   }
 
   render() {
@@ -38,12 +34,12 @@ class PrivateRoute extends Component {
             ) : this.state.loading ? (
               <div>LOADING</div>
             ) : (
-              <Redirect
-                to={{
-                  pathname: "/signin"
-                }}
-              />
-            )
+                  <Redirect
+                    to={{
+                      pathname: "/signin"
+                    }}
+                  />
+                )
           }
         />
       </div>

@@ -14,18 +14,18 @@ export class Signout extends Component {
 
   componentDidMount() {
     User.setIsLoggedIn(false);
-    axios.get("/logout").then(() => {
-      this.setState({
-        loading: false
-      });
+    //axios.get("/logout").then(() => {
+    this.setState({
+      loading: false
     });
+    //});
   }
 
   render() {
     return this.state.loading ? (
       <div>LOADING</div>
     ) : (
-      <Redirect to={{ pathname: "/signin" }} />
-    );
+        <Redirect to={{ pathname: "/signin" }} />
+      );  
   }
 }

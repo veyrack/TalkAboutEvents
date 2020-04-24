@@ -4,6 +4,7 @@ import axios from "axios";
 
 import "./style/signup.css";
 import { Navigbar } from "./Navigbar";
+import Config from "./Config";
 
 export class Signup extends Component {
   constructor(props) {
@@ -16,8 +17,6 @@ export class Signup extends Component {
       // pseudo
       pseudo: "",
       pseudoError: "",
-      // gender
-      gender: "h",
       formGotError: true
     };
   }
@@ -37,12 +36,13 @@ export class Signup extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await axios.post("/user", {
-        email: this.state.email,
-        password: this.state.password,
-        pseudo: this.state.pseudo,
-        gender: this.state.gender
-      });
+      const response = await axios.post(Config.BASE_URI + "/signup?email=" + this.state.email + "&mdp=" + this.state.password + "&pseudo=" + this.state.pseudo,
+        // {
+        //   email: this.state.email,
+        //   password: this.state.password,
+        //   pseudo: this.state.pseudo
+        // }
+      );
       if (response.status === 200) {
         console.log("user created");
         this.props.history.push("/signin");
@@ -100,7 +100,7 @@ export class Signup extends Component {
         <Navigbar islog="false" />
         <div className="formBox signParent p-3" method="none">
           <form onSubmit={this.handleSubmit}>
-          <div className="form__group field">
+            <div className="form__group field">
               <input
                 type="text"
                 name="pseudo"
@@ -122,7 +122,7 @@ export class Signup extends Component {
                 onChange={this.handleChange}
               />
               <label for="email" className="form__label"><strong>Email :</strong></label>
-              </div>
+            </div>
 
             <div className="form__group field">
               <input
@@ -134,28 +134,8 @@ export class Signup extends Component {
                 onChange={this.handleChange}
               />
               <label for="email" className="form__label"><strong>Mot de passe :</strong></label>
-              </div>
-            <br/>
-            <label>
-            <font color="white" size="5"><strong>Homme </strong> </font>
-              <input
-                type="radio"
-                name="gender"
-                value="h"
-                onChange={this.handleChange}
-                checked
-              />
-            </label>
-
-            <label>
-            <font color="white" size="5"><strong>Femme </strong> </font>
-              <input
-                type="radio"
-                name="gender"
-                value="f"
-                onChange={this.handleChange}
-              />
-            </label>
+            </div>
+            <br />
 
             <input
               type="submit"
@@ -171,7 +151,7 @@ export class Signup extends Component {
             <label className="signError">{this.state.passError}</label>
           </div>
           <p>
-          <strong>Déjà un comtpe ?</strong> <Link className="signLink" to="./signin"> se connecter</Link>
+            <strong>Déjà un comtpe ?</strong> <Link className="signLink" to="./signin"> se connecter</Link>
           </p>
         </div>
       </div>
