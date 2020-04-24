@@ -35,35 +35,23 @@ public class SignIn_svlt extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
+
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
 		AuthHandler auth = new AuthHandler();
 		PwdHandler pwd = new PwdHandler();
 
-		String pseudo = request.getParameter("pseudo");
+		String email = request.getParameter("email");
 		String mdp = request.getParameter("mdp");
-		Optional<ResultSet> resOpt = auth.isUserExist(pseudo);
-
+		Optional<ResultSet> resOpt = auth.isUserExist(email);
 		if (resOpt.isPresent()) {
 			ResultSet res = resOpt.get();
 			try {
@@ -72,15 +60,18 @@ public class SignIn_svlt extends HttpServlet {
 
 				if (pwd.verifyPwd(mdp, mdpDb, saltDb)) {
 					Users user = new Users();
+					user.setId(res.getInt("id"));
 					user.setBio(res.getString("bio"));
 					user.setEmail(res.getString("email"));
 					user.setPdp(res.getString("pdp"));
 					user.setPseudo(res.getString("pseudo"));
 
 					HttpSession session = request.getSession();
-					session.setAttribute("userInfos", user);
+					session.setAttribute("user", user);
 					out.println(gson.toJson(user));
+					response.setStatus(HttpServletResponse.SC_OK);
 				} else {
+					response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 					out.println(gson.toJson(Optional.empty()));
 				}
 			} catch (SQLException e) {

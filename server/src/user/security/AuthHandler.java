@@ -11,20 +11,20 @@ import db.DbHandler;
 public class AuthHandler {
 
 	private DbHandler db = new DbHandler();
-	
-	public Optional<ResultSet> isUserExist(String pseudo) {
+
+	public Optional<ResultSet> isUserExist(String email) {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet res = null;
-		
+
 		db.loadDb();
 		try {
 			conn = db.getConn();
 			st = conn.createStatement();
-			res = st.executeQuery("select * from Utilisateurs where pseudo = \""+pseudo+"\"");
-			if(res.next())
+			res = st.executeQuery("select * from Utilisateurs where email = \"" + email + "\"");
+			if (res.next())
 				return Optional.of(res);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -44,20 +44,15 @@ public class SignUp_svlt extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
 		String bio = request.getParameter("bio");
 		String pdp = request.getParameter("pdp");
 		String email = request.getParameter("email");
-		System.out.println("pseudo : " + pseudo);
 		try {
 			Users.AddUser(pseudo, mdp, bio, pdp, email);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 }

@@ -9,15 +9,37 @@ import db.DbHandler;
 import user.security.PwdHandler;
 
 public class Users {
+
+	private int id;
 	private String pseudo;
 	private String bio;
 	private String pdp;
 	private String email;
-	
+
 	public Users() {
-		// TODO Auto-generated constructor stub
 	}
-	
+
+	public Users(int id, String pseudo, String bio, String pdp, String email) {
+		this.id = id;
+		this.pseudo = pseudo;
+		this.bio = bio;
+		this.pdp = pdp;
+		this.email = pdp;
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getPseudo() {
 		return pseudo;
 	}
@@ -50,14 +72,6 @@ public class Users {
 		this.email = email;
 	}
 
-	public Users(String pseudo,String bio, String pdp, String email) {
-		// TODO Auto-generated constructor stub
-		this.pseudo = pseudo;
-		this.bio = bio;
-		this.pdp = pdp;
-		this.email = pdp;
-	}
-	
 	public static void AddUser(String pseudo, String mdp, String bio, String pdp, String email) throws SQLException {
 		DbHandler db = new DbHandler();
 		db.loadDb();
@@ -66,9 +80,10 @@ public class Users {
 		String salt = pwd.generateSalt();
 		Optional<String> hashedPwdOpt = pwd.hashPwd(mdp, salt);
 		String hashedPwd;
-		if(hashedPwdOpt.isPresent()) {
+		if (hashedPwdOpt.isPresent()) {
 			hashedPwd = hashedPwdOpt.get();
-			PreparedStatement addquery = conn.prepareStatement("INSERT INTO Utilisateurs(pseudo,email,mdp,salt,pdp,bio) VALUES(?,?,?,?,?,?);");
+			PreparedStatement addquery = conn
+					.prepareStatement("INSERT INTO Utilisateurs(pseudo,email,mdp,salt,pdp,bio) VALUES(?,?,?,?,?,?);");
 			addquery.setString(1, pseudo);
 			addquery.setString(2, email);
 			addquery.setString(3, hashedPwd);
@@ -80,7 +95,7 @@ public class Users {
 	}
 
 	public void UpdateField(String label, Object value) {
-		
+
 	}
 
 }

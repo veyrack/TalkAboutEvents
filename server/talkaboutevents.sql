@@ -104,7 +104,7 @@ CREATE TABLE `Utilisateurs` (
   `pdp` varchar(100) DEFAULT 'empty',
   `bio` varchar(255) DEFAULT 'empty',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `Utilisateurs` (
 
 LOCK TABLES `Utilisateurs` WRITE;
 /*!40000 ALTER TABLE `Utilisateurs` DISABLE KEYS */;
-INSERT INTO `Utilisateurs` VALUES (1,'test','felous77@gmail.com','GolV11uf0MukzB4DvohvHw==','izdOW6WLfkdepgP8vjJ8A+hjba5IGwy4Z/7nGU4d5Mv00aeHfGn+aYtI+ZOjl5QQL+rQPVekDpM1/OKJzAl9WLtxPqx/pG+WyH/+RBUMum4+3Y9iHaMKvI4UFrIlEpNv69bPib/UB16l7+6jPiwyCPqa6IXypwcjpIpEcfmdFog=','chien.png','empty');
+INSERT INTO `Utilisateurs` VALUES (1,'test','felous77@gmail.com','GolV11uf0MukzB4DvohvHw==','izdOW6WLfkdepgP8vjJ8A+hjba5IGwy4Z/7nGU4d5Mv00aeHfGn+aYtI+ZOjl5QQL+rQPVekDpM1/OKJzAl9WLtxPqx/pG+WyH/+RBUMum4+3Y9iHaMKvI4UFrIlEpNv69bPib/UB16l7+6jPiwyCPqa6IXypwcjpIpEcfmdFog=','chien.png','empty'),(2,'test1','email','nkpPE/+XVzHGPD8ev3+JqQ==','LfQsNCNZz8UT+PZwZMgZ4n9PTUHE7ddW6y0ftjZ0r7j7FeQEhOxvxRGuh/0O0rjkljxGpPiz/D5iSypnOw53hOlY+2oyTcmDPpk5zav1v5KcRak2IAkMCGJelNQ8yWjPOJLF6IIoRY4HPij4yz39780BuZOZV2B9eF6klFDA7Y8=','pdp','bio'),(3,'test2','test2@gmail.com','BoByRo2rSafmLMGA2qizjw==','f/Z7uM98W3rG6wHgvJOXuDbu4vNcrN+3z9jDvj+HZVSre6W7mI5jLYBqmHc6Lid0saq9e8UjjJXEiuBp0RROSu6K3rGIVeTO9yMmH/VTx9ExW/8gu6DfFaWP+hvpiymmmUeGcVyGyC/k6vFjpUH5BcwDryPlERYtz7yuECG60H4=','pdp','bio'),(4,'test3','test3@gmail.com','az3rz5wt3p0+iQfKBHGhew==','3WxZm8ZK3Qd232JlsuSXNmBXXqVMg3hlwYghAx9SPo8avQS/UeUzOmgkKXGTfJOlPFAPbONfo5gVSPSrT6QtK0Rh3J3sqlD6mwO7sBy6gqMT1K9e6nESiyrKTwtyFqa6mclc9Df9JYQR+HAsHCHbrBzl6iNGPjH6Po4biPpzFXA=',NULL,NULL);
 /*!40000 ALTER TABLE `Utilisateurs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -126,4 +126,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-23 22:23:46
+-- Dump completed on 2020-04-24 11:31:47
