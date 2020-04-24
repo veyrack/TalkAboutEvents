@@ -4,7 +4,7 @@ Les exemples suivant sont donnés pour ubuntu 18.04, trouvez les commandes équi
 
 ## Installation de la base de données
 
-Installation de mysql : `mysqldump maBase > maBase_backup.sql`
+Installation de mysql : 
 
 
 **Les commandes suivantes sont à effectués depuis le repertoire server :**
