@@ -20,6 +20,8 @@
     <servlet-name>servlet_signin</servlet-name>
     <url-pattern>/signin</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>servlet_signup</servlet-name>
     <servlet-class>user.servlets.SignUp_svlt</servlet-class>
@@ -28,6 +30,17 @@
     <servlet-name>servlet_signup</servlet-name>
     <url-pattern>/signup</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>servlet_users</servlet-name>
+    <servlet-class>user.servlets.Users_svlt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servlet_users</servlet-name>
+    <url-pattern>/user</url-pattern>
+  </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>servlet_search_event</servlet-name>
     <servlet-class>event.servlets.Search_svlt</servlet-class>

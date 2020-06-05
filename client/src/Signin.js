@@ -31,14 +31,15 @@ export class Signin extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await axios.get(Config.BASE_URI + "/signin?email=" + this.state.email + "&mdp=" + this.state.password
+      const response = await axios.get(Config.BASE_URI + "/signin?email=" + this.state.email + "&mdp=" + this.state.password, { withCredentials: true }
         // , {
         //   pseudo: this.state.pseudo,
         //   password: this.state.password
         // }
       );
+      console.log("resssp :", response);
+      console.log("ressp data:", response.data)
       if (response.status === 200) {
-        console.log("OK 2000000");
         User.login(response.data);
         this.props.history.push("/");
         // User.update().then(() => {
@@ -74,7 +75,7 @@ export class Signin extends Component {
                 placeholder="email@example.com"
                 onChange={this.handleChange}
               />
-              <label for="email" className="form__label"><strong>Email :</strong></label>
+              <label htmlFor="email" className="form__label"><strong>Email :</strong></label>
             </div>
 
             <br />
@@ -88,7 +89,7 @@ export class Signin extends Component {
                 placeholder="Mot de passe"
                 onChange={this.handleChange}
               />
-              <label for="password" className="form__label"><strong>Mot de passe :</strong></label>
+              <label htmlFor="password" className="form__label"><strong>Mot de passe :</strong></label>
             </div>
             <br />
 

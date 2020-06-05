@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 
 import user.Users;
@@ -25,6 +28,7 @@ import user.security.PwdHandler;
 @WebServlet("/SignIn_svlt")
 public class SignIn_svlt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LogManager.getLogger(SignIn_svlt.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -67,7 +71,9 @@ public class SignIn_svlt extends HttpServlet {
 					user.setPseudo(res.getString("pseudo"));
 
 					HttpSession session = request.getSession();
+					session.setMaxInactiveInterval(-1); // la session n'a pas de date de mort
 					session.setAttribute("user", user);
+
 					out.println(gson.toJson(user));
 					response.setStatus(HttpServletResponse.SC_OK);
 				} else {

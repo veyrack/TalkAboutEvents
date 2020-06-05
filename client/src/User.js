@@ -1,4 +1,5 @@
 import axios from "axios";
+import Config from "./Config";
 
 var User = (() => {
   // attributs
@@ -42,12 +43,12 @@ var User = (() => {
 
   // met a jour l'utilisateur après avoir verifier aupres du serveur
   const update = async () => {
-    let islog = false;
-    // let user = (await axios.get("/user")).data;
-    // let islog = !(user.id == null);
-    // if (islog) {
-    //   set(user, islog);
-    // }
+    let response = await axios.get(Config.BASE_URI + "/user", { withCredentials: true });
+    let user = response.data;
+    let islog = !(user.id == null);
+    if (islog) {
+      set(user, islog);
+    }
   };
 
   // si l'utilisateur est log, return true, sinon verifie auprès du serveur et renvoie la reponse
