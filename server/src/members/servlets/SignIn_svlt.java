@@ -63,19 +63,12 @@ public class SignIn_svlt extends HttpServlet {
 				String saltDb = res.getString("salt");
 
 				if (pwd.verifyPwd(mdp, mdpDb, saltDb)) {
-					User user = new User();
-					user.setId(res.getInt("id"));
-					user.setBio(res.getString("bio"));
-					user.setEmail(res.getString("email"));
-					user.setPdp(res.getString("pdp"));
-					user.setPseudo(res.getString("pseudo"));
-
-					HttpSession session = request.getSession();
+					User user = new User(res);
+					HttpSession session = request.getSession(); // on créer la session
 					session.setMaxInactiveInterval(-1); // la session n'a pas de date de mort
 					session.setAttribute("user", user);
-
-					out.println(gson.toJson(user));
 					response.setStatus(HttpServletResponse.SC_OK);
+					out.println(gson.toJson(user));
 				} else {
 					response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 					out.println(gson.toJson(Optional.empty()));

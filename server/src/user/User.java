@@ -1,5 +1,7 @@
 package user;
 
+import java.sql.ResultSet;
+
 public class User {
 
 	private int id;
@@ -18,6 +20,18 @@ public class User {
 		this.bio = bio;
 		this.pdp = pdp;
 		this.email = pdp;
+	}
+
+	public User(ResultSet user) {
+		try {
+			id = user.getInt("id");
+			bio = user.getString("bio");
+			email = user.getString("email");
+			pdp = user.getString("pdp");
+			pseudo = user.getString("pseudo");
+		} catch (Exception e) {
+			throw new RuntimeException("cant create user from ResultSet");
+		}
 	}
 
 	@Override

@@ -35,19 +35,30 @@ public class DBUser {
 	}
 
 	public static Optional<ResultSet> getUser(String email) {
-		Connection conn = null;
-		Statement st = null;
-		ResultSet res = null;
 		DbHandler db = new DbHandler();
-
 		db.loadDb();
 		try {
-			conn = db.getConn();
-			st = conn.createStatement();
-			res = st.executeQuery("select * from Utilisateurs where email = \"" + email + "\"");
+			Connection conn = db.getConn();
+			Statement st = conn.createStatement();
+			ResultSet res = st.executeQuery("select * from Utilisateurs where email = \"" + email + "\"");
 			if (res.next())
 				return Optional.of(res);
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Optional.empty();
+	}
+
+	public static Optional<ResultSet> getUserById(int id) {
+		DbHandler db = new DbHandler();
+		db.loadDb();
+		try {
+			Connection conn = db.getConn();
+			Statement st = conn.createStatement();
+			ResultSet res = st.executeQuery("select * from Utilisateurs where id = \"" + id + "\"");
+			if (res.next())
+				return Optional.of(res);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
