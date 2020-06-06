@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.User;
+import db.DBUser;
 
 /**
  * Servlet implementation class SignUn_svlt
@@ -50,7 +50,7 @@ public class SignUp_svlt extends HttpServlet {
 		String pdp = request.getParameter("pdp");
 		String email = request.getParameter("email");
 		try {
-			User.AddUser(pseudo, mdp, bio, pdp, email);
+			DBUser.AddUser(pseudo, mdp, bio, pdp, email);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
