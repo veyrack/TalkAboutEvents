@@ -54,3 +54,41 @@ Une fois le client lancé (il se lance sur le port 3000), votre navigateur devra
 `http://localhost:3000/`
 
 Le client et le serveur peuvent maintenant communiqué. 
+
+
+## Organisation du serveur
+
+### packages
+
+- db : doit contenir une classe par table de la db, chaque classe réalisant les requêtes associés à la table (une classe User, une Message, etc)
+
+- security : contient tout ce qui est relatif a la sécurité de l'app, gestion des CORS, authentification, etc.
+
+- members : gère l'inscription/connexion/déconnexion
+
+puis un package par entité / chemin, par exemple le package user gèrera tout les chemins /user, pareil pour messages, events, etc.
+
+### Routes 
+
+Voici la spécifications des chemins du serveur. Il faut bien penser à gérer les eventuelles cas d'erreurs en renvoyant les bons codes HTTP.
+
+- /user  
+    - get : vérifie si l'utilisateur à une session, s'il n'en a pas on renvoie une erreur accès non autorisé, si il en à une on renvoie l'utilisateur associé à cette session.
+    - update : met a jour l'utilisateur de la session, attention un ou plusieurs champs peut etre mis à jour. Si le mdp est mis à jour, il doit être crypté. 
+    - delete : supprime l'utilisateur, on invalide sa session 
+
+- /signin 
+    - get : ok si les identifiants sont les bons, code erreur sinon
+
+- /signup 
+    - post : enregistre l'utiisateur si les champs sont ok, erreur sinon
+
+- /signout 
+    - get : détruit la session
+
+- /message a voir plus tard, ca risque d'etre particulier
+
+- /events 
+    - get : récupère les evenements, des filtres doivent pouvoir être appliqué (il faut qu'on ce mette d'accord), au debut on va faire simple : uniquement par localisation (a voir si on passe un nom ou des coordonnées gps selon l'api)
+    - post : avec un id d'event et l'utilisateur de la session, indique que l'utilisateur participe a l'evennement (faire ca plus tard, pas une prioritée du tout)
+    - delete : avec un id d'event, enleve la participation de l'utilisateur a l'evenement  
