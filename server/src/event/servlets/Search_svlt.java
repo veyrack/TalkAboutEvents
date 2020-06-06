@@ -9,12 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class Search_svlt
  */
 @WebServlet("/Search_svlt")
 public class Search_svlt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private static final Logger logger = LogManager.getLogger(Search_svlt.class);
 
 	public Search_svlt() {
 		super();
@@ -27,7 +32,13 @@ public class Search_svlt extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		ApiHandler api = new ApiHandler();
+
+		logger.debug("search event, label : " + request.getParameter("label"));
+
 		String content = api.searchEventBy(request.getParameter("label"));
+
+		logger.debug("event length : " + content.length());
+
 		out.println(content);
 	}
 

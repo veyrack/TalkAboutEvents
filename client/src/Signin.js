@@ -39,14 +39,11 @@ export class Signin extends Component {
         withCredentials: true
       }
       );
-      console.log("resssp :", response);
-      console.log("ressp data:", response.data)
       if (response.status === 200) {
         User.login(response.data);
-        this.props.history.push("/");
-        // User.update().then(() => {
-        //   this.props.history.push("/");
-        // });
+        User.update().then(() => {
+          this.props.history.push("/");
+        });
       }
     } catch (error) {
       console.log("ERREUR :", error);

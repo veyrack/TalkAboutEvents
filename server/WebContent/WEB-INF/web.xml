@@ -56,6 +56,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>servlet_search_event</servlet-name>
-    <url-pattern>/event</url-pattern>
+    <url-pattern>/events</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import "./style/global.css";
+import "bootstrap/dist/css/bootstrap.min.css"
+
 import PrivateRoute from "./PrivateRoute";
 import { Signin } from "./Signin";
 import { Signup } from "./Signup";

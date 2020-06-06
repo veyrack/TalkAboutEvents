@@ -84,10 +84,9 @@ public class Users_svlt extends HttpServlet {
 
 		User toUpdate = new User();
 
+		// on récupère l'objet du corp de la requête
 		String requestDataString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-
-		JsonParser gson = new JsonParser();
-		JsonObject data = gson.parse(requestDataString).getAsJsonObject();
+		JsonObject data = JsonParser.parseString(requestDataString).getAsJsonObject();
 
 		String bio = data.get("bio") == null ? null : data.get("bio").getAsString();
 		String email = data.get("email") == null ? null : data.get("email").getAsString();
