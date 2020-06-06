@@ -3,18 +3,18 @@
   
   <filter>
     <filter-name>CorsFilter</filter-name>
-    <filter-class>user.security.CORSFilter</filter-class>
+    <filter-class>security.CORSFilter</filter-class>
 </filter>
  
 <filter-mapping>
     <filter-name>CorsFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>*</url-pattern>
 </filter-mapping>
   
   
   <servlet>
     <servlet-name>servlet_signin</servlet-name>
-    <servlet-class>user.servlets.SignIn_svlt</servlet-class>
+    <servlet-class>members.servlets.SignIn_svlt</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>servlet_signin</servlet-name>
@@ -24,7 +24,7 @@
   
   <servlet>
     <servlet-name>servlet_signup</servlet-name>
-    <servlet-class>user.servlets.SignUp_svlt</servlet-class>
+    <servlet-class>members.servlets.SignUp_svlt</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>servlet_signup</servlet-name>

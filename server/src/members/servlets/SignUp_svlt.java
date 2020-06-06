@@ -1,4 +1,4 @@
-package user.servlets;
+package members.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.Users;
+import user.User;
 
 /**
  * Servlet implementation class SignUn_svlt
@@ -50,7 +50,7 @@ public class SignUp_svlt extends HttpServlet {
 		String pdp = request.getParameter("pdp");
 		String email = request.getParameter("email");
 		try {
-			Users.AddUser(pseudo, mdp, bio, pdp, email);
+			User.AddUser(pseudo, mdp, bio, pdp, email);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

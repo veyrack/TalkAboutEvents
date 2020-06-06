@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 import db.DbHandler;
-import user.security.PwdHandler;
+import security.PwdHandler;
 
-public class Users {
+public class User {
 
 	private int id;
 	private String pseudo;
@@ -16,10 +16,10 @@ public class Users {
 	private String pdp;
 	private String email;
 
-	public Users() {
+	public User() {
 	}
 
-	public Users(int id, String pseudo, String bio, String pdp, String email) {
+	public User(int id, String pseudo, String bio, String pdp, String email) {
 		this.id = id;
 		this.pseudo = pseudo;
 		this.bio = bio;

@@ -1,4 +1,4 @@
-package user.servlets;
+package members.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,9 +18,9 @@ import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 
-import user.Users;
-import user.security.AuthHandler;
-import user.security.PwdHandler;
+import security.AuthHandler;
+import security.PwdHandler;
+import user.User;
 
 /**
  * Servlet implementation class SignIn_svlt
@@ -55,6 +55,7 @@ public class SignIn_svlt extends HttpServlet {
 
 		String email = request.getParameter("email");
 		String mdp = request.getParameter("mdp");
+
 		Optional<ResultSet> resOpt = auth.isUserExist(email);
 		if (resOpt.isPresent()) {
 			ResultSet res = resOpt.get();
@@ -63,7 +64,7 @@ public class SignIn_svlt extends HttpServlet {
 				String saltDb = res.getString("salt");
 
 				if (pwd.verifyPwd(mdp, mdpDb, saltDb)) {
-					Users user = new Users();
+					User user = new User();
 					user.setId(res.getInt("id"));
 					user.setBio(res.getString("bio"));
 					user.setEmail(res.getString("email"));

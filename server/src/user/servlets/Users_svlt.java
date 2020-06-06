@@ -14,7 +14,7 @@ import org.apache.log4j.LogManager;
 
 import com.google.gson.Gson;
 
-import user.Users;
+import user.User;
 
 @WebServlet("/Users_svlt")
 public class Users_svlt extends HttpServlet {
@@ -45,7 +45,7 @@ public class Users_svlt extends HttpServlet {
 		if (session == null)
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		else {
-			Users user = (Users) session.getAttribute("user");
+			User user = (User) session.getAttribute("user");
 			out.println(gson.toJson(user));
 			response.setStatus(HttpServletResponse.SC_OK);
 		}

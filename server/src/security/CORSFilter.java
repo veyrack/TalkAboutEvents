@@ -1,4 +1,4 @@
-package user.security;
+package security;
 
 import java.io.IOException;
 
