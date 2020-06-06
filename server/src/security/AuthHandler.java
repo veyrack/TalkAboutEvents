@@ -26,7 +26,6 @@ public class AuthHandler {
 				return Optional.of(res);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();

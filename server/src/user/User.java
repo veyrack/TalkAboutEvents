@@ -7,6 +7,7 @@ public class User {
 	private String bio;
 	private String pdp;
 	private String email;
+	private String mdp;
 
 	public User() {
 	}
@@ -28,44 +29,54 @@ public class User {
 		return id;
 	}
 
-	public void setId(int id) {
+	public User setId(int id) {
 		this.id = id;
+		return this;
 	}
 
 	public String getPseudo() {
 		return pseudo;
 	}
 
-	public void setPseudo(String pseudo) {
+	public User setPseudo(String pseudo) {
 		this.pseudo = pseudo;
+		return this;
 	}
 
 	public String getBio() {
 		return bio;
 	}
 
-	public void setBio(String bio) {
+	public User setBio(String bio) {
 		this.bio = bio;
+		return this;
 	}
 
 	public String getPdp() {
 		return pdp;
 	}
 
-	public void setPdp(String pdp) {
+	public User setPdp(String pdp) {
 		this.pdp = pdp;
+		return this;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public User setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 
-	public void UpdateField(String label, Object value) {
+	public String getMdp() {
+		return mdp;
+	}
 
+	public User setMdp(String mdp) {
+		this.mdp = mdp;
+		return this;
 	}
 
 }
