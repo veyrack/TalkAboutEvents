@@ -49,7 +49,8 @@ public class Users_svlt extends HttpServlet {
 			Optional<ResultSet> user = DBUser.getUserById(Integer.parseInt(id));
 			if (user.isPresent()) { // l'utilisateur existe on le renvoie
 				response.setStatus(HttpServletResponse.SC_OK);
-				out.println(gson.toJson(user.get()));
+				User res = new User(user.get());
+				out.println(gson.toJson(res));
 			} else { // l'utilisateur n'existe pas
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 			}
