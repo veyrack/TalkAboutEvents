@@ -37,11 +37,11 @@ export class Signup extends Component {
     e.preventDefault();
     try {
       const response = await axios.post(Config.BASE_URI + "/signup?email=" + this.state.email + "&mdp=" + this.state.password + "&pseudo=" + this.state.pseudo,
-        // {
-        //   email: this.state.email,
-        //   password: this.state.password,
-        //   pseudo: this.state.pseudo
-        // }
+        {
+          email: this.state.email,
+          mdp: this.state.password,
+          pseudo: this.state.pseudo
+        }
       );
       if (response.status === 200) {
         console.log("user created");

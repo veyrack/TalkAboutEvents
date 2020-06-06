@@ -31,11 +31,13 @@ export class Signin extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await axios.get(Config.BASE_URI + "/signin?email=" + this.state.email + "&mdp=" + this.state.password, { withCredentials: true }
-        // , {
-        //   pseudo: this.state.pseudo,
-        //   password: this.state.password
-        // }
+      const response = await axios.get(Config.BASE_URI + "/signin", {
+        params: {
+          email: this.state.email,
+          mdp: this.state.password
+        },
+        withCredentials: true
+      }
       );
       console.log("resssp :", response);
       console.log("ressp data:", response.data)
