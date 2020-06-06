@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 
-import security.AuthHandler;
+import db.DBUser;
 import security.PwdHandler;
 import user.User;
 
@@ -50,13 +50,12 @@ public class SignIn_svlt extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
-		AuthHandler auth = new AuthHandler();
 		PwdHandler pwd = new PwdHandler();
 
 		String email = request.getParameter("email");
 		String mdp = request.getParameter("mdp");
 
-		Optional<ResultSet> resOpt = auth.isUserExist(email);
+		Optional<ResultSet> resOpt = DBUser.getUser(email);
 		if (resOpt.isPresent()) {
 			ResultSet res = resOpt.get();
 			try {

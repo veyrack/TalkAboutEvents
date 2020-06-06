@@ -2,7 +2,9 @@ package db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Optional;
 
 import security.PwdHandler;
@@ -30,6 +32,26 @@ public class DBUser {
 			addquery.setString(6, user.getBio());
 			addquery.executeUpdate();
 		}
+	}
+
+	public static Optional<ResultSet> getUser(String email) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet res = null;
+		DbHandler db = new DbHandler();
+
+		db.loadDb();
+		try {
+			conn = db.getConn();
+			st = conn.createStatement();
+			res = st.executeQuery("select * from Utilisateurs where email = \"" + email + "\"");
+			if (res.next())
+				return Optional.of(res);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Optional.empty();
 	}
 
 }
