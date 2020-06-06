@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import db.DBUser;
 import user.User;
 
@@ -17,7 +20,9 @@ import user.User;
  */
 @WebServlet("/SignUp_svlt")
 public class SignUp_svlt extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LogManager.getLogger(SignUp_svlt.class);
 
 	public SignUp_svlt() {
 		super();
@@ -29,6 +34,9 @@ public class SignUp_svlt extends HttpServlet {
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
 		String email = request.getParameter("email");
+
+		logger.debug("try post user : " + pseudo + " / " + email + " / " + mdp);
+
 		User user = new User();
 		user.setPseudo(pseudo).setEmail(email).setMdp(mdp);
 		try {

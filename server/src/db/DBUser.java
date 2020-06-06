@@ -81,4 +81,47 @@ public class DBUser {
 		return Optional.empty();
 	}
 
+	public static void updateUser(int id, User user) {
+		DbHandler db = new DbHandler();
+		db.loadDb();
+
+		try {
+			logger.debug("update user " + id);
+			Connection conn = db.getConn();
+
+			// TODO : code à factoriser
+			if (user.getPdp() != null) {
+				logger.debug("update pdp, length : " + user.getPdp().length());
+				PreparedStatement query = conn.prepareStatement("UPDATE Utilisateurs SET pdp=? WHERE id = ?;");
+				query.setString(1, user.getPdp());
+				query.setString(2, Integer.toString(id));
+				query.execute();
+			}
+			if (user.getEmail() != null) {
+				logger.debug("update email : " + user.getEmail());
+				PreparedStatement query = conn.prepareStatement("UPDATE Utilisateurs SET email=? WHERE id = ?;");
+				query.setString(1, user.getEmail());
+				query.setString(2, Integer.toString(id));
+				query.execute();
+			}
+			if (user.getBio() != null) {
+				logger.debug("update bio : " + user.getBio());
+				PreparedStatement query = conn.prepareStatement("UPDATE Utilisateurs SET bio=? WHERE id = ?;");
+				query.setString(1, user.getBio());
+				query.setString(2, Integer.toString(id));
+				query.execute();
+			}
+			if (user.getPseudo() != null) {
+				logger.debug("update pseudo : " + user.getPseudo());
+				PreparedStatement query = conn.prepareStatement("UPDATE Utilisateurs SET pseudo=? WHERE id = ?;");
+				query.setString(1, user.getPseudo());
+				query.setString(2, Integer.toString(id));
+				query.execute();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

@@ -3,24 +3,28 @@ import axios from "axios";
 
 import "./style/editProfil.css";
 import User from "./User";
+import Config from "./Config";
 
 export class EditProfil extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: ""
     };
   }
 
   handleSubmit = async e => {
     e.preventDefault();
     let data = { ...this.state };
-    if (data.picture != null) data.picture = await this.getBase64(data.picture);
+    if (data.picture != null) {
+      data.pdp = await this.getBase64(data.picture);
+      data.picture = null;
+    }
     // on renvoie les modifs et redirige sur profil
-    // axios.put("/user", data).then(resp => {
-    //   if (resp.status === 200)
-    //     this.props.history.push("/profil?id=" + User.getId());
-    // });
+    console.log("test : ", data);
+    axios.put(Config.BASE_URI + "/user", data, { withCredentials: true }).then(resp => {
+      if (resp.status === 200)
+        this.props.history.push("/profil?id=" + User.getId());
+    });
   };
 
   handleChange = e => {
@@ -59,11 +63,19 @@ export class EditProfil extends Component {
             accept=".png"
             onChange={this.handleChange}
           />
+          <label>Pseudo</label>
+          <input
+            type="text"
+            id="pseudo"
+            value={this.state.pseudo}
+            placeholder="Pseudo ..."
+            onChange={this.handleChange}
+          />
           <label>Description</label>
           <input
             type="text"
-            id="description"
-            value={this.state.description}
+            id="bio"
+            value={this.state.bio}
             placeholder="Description ..."
             onChange={this.handleChange}
           />
