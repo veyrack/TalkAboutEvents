@@ -7,10 +7,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Optional;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import members.servlets.SignIn_svlt;
 import security.PwdHandler;
 import user.User;
 
 public class DBUser {
+
+	private static final Logger logger = LogManager.getLogger(SignIn_svlt.class);
 
 	public static void AddUser(User user) throws SQLException {
 		DbHandler db = new DbHandler();
@@ -28,6 +34,16 @@ public class DBUser {
 			addquery.setString(2, user.getEmail());
 			addquery.setString(3, hashedPwd);
 			addquery.setString(4, salt);
+			// on recupère la pdp par défaut
+//			String base64 = null;
+//			try {
+//
+//				base64 = DatatypeConverter
+//						.printBase64Binary(Files.readAllBytes(Paths.get("WebContent/WEB-INF/lib/default.png")));
+//			} catch (IOException e) {
+//				logger.error(e.getMessage());
+//			}
+//			addquery.setString(5, base64);
 			addquery.setString(5, user.getPdp());
 			addquery.setString(6, user.getBio());
 			addquery.executeUpdate();
