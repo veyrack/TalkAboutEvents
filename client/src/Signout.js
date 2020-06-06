@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 import User from "./User";
+import Config from "./Config"
 
 export class Signout extends Component {
   constructor(props) {
@@ -14,11 +15,11 @@ export class Signout extends Component {
 
   componentDidMount() {
     User.setIsLoggedIn(false);
-    //axios.get("/logout").then(() => {
-    this.setState({
-      loading: false
+    axios.get(Config.BASE_URI + "/signout", { withCredentials: true }).then(() => {
+      this.setState({
+        loading: false
+      });
     });
-    //});
   }
 
   render() {
@@ -26,6 +27,6 @@ export class Signout extends Component {
       <div>LOADING</div>
     ) : (
         <Redirect to={{ pathname: "/signin" }} />
-      );  
+      );
   }
 }

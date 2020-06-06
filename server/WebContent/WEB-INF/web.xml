@@ -21,6 +21,15 @@
     <url-pattern>/signin</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>servlet_signout</servlet-name>
+    <servlet-class>members.servlets.SignOut_svlt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servlet_signout</servlet-name>
+    <url-pattern>/signout</url-pattern>
+  </servlet-mapping>
+  
   
   <servlet>
     <servlet-name>servlet_signup</servlet-name>
