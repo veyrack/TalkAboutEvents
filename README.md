@@ -73,7 +73,7 @@ puis un package par entité / chemin, par exemple le package user gèrera tout l
 Voici la spécifications des chemins du serveur. Il faut bien penser à gérer les eventuelles cas d'erreurs en renvoyant les bons codes HTTP.
 
 - /user  
-    - get : vérifie si l'utilisateur à une session, s'il n'en a pas on renvoie une erreur accès non autorisé, si il en à une on renvoie l'utilisateur associé à cette session.
+    - get : vérifie si l'utilisateur à une session, s'il n'en a pas on renvoie une erreur accès non autorisé, si il en à une on renvoie l'utilisateur associé à cette session. si un champ id est passé a la requete, on renvoie simplement l'utilisateur d'id id (attention pas renvoyé mdp...)
     - update : met a jour l'utilisateur de la session, attention un ou plusieurs champs peut etre mis à jour. Si le mdp est mis à jour, il doit être crypté. 
     - delete : supprime l'utilisateur, on invalide sa session 
 
