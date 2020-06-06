@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.30, for Linux (x86_64)
 --
 -- Host: localhost    Database: talkaboutevents
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1
+-- Server version	5.7.30-0ubuntu0.18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -101,10 +101,10 @@ CREATE TABLE `Utilisateurs` (
   `email` varchar(100) NOT NULL,
   `mdp` varchar(255) NOT NULL,
   `salt` varchar(255) NOT NULL,
-  `pdp` varchar(100) DEFAULT 'empty',
+  `pdp` text,
   `bio` varchar(255) DEFAULT 'empty',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `Utilisateurs` (
 
 LOCK TABLES `Utilisateurs` WRITE;
 /*!40000 ALTER TABLE `Utilisateurs` DISABLE KEYS */;
-INSERT INTO `Utilisateurs` VALUES (1,'test','felous77@gmail.com','GolV11uf0MukzB4DvohvHw==','izdOW6WLfkdepgP8vjJ8A+hjba5IGwy4Z/7nGU4d5Mv00aeHfGn+aYtI+ZOjl5QQL+rQPVekDpM1/OKJzAl9WLtxPqx/pG+WyH/+RBUMum4+3Y9iHaMKvI4UFrIlEpNv69bPib/UB16l7+6jPiwyCPqa6IXypwcjpIpEcfmdFog=','chien.png','empty'),(2,'test1','email','nkpPE/+XVzHGPD8ev3+JqQ==','LfQsNCNZz8UT+PZwZMgZ4n9PTUHE7ddW6y0ftjZ0r7j7FeQEhOxvxRGuh/0O0rjkljxGpPiz/D5iSypnOw53hOlY+2oyTcmDPpk5zav1v5KcRak2IAkMCGJelNQ8yWjPOJLF6IIoRY4HPij4yz39780BuZOZV2B9eF6klFDA7Y8=','pdp','bio'),(3,'test2','test2@gmail.com','BoByRo2rSafmLMGA2qizjw==','f/Z7uM98W3rG6wHgvJOXuDbu4vNcrN+3z9jDvj+HZVSre6W7mI5jLYBqmHc6Lid0saq9e8UjjJXEiuBp0RROSu6K3rGIVeTO9yMmH/VTx9ExW/8gu6DfFaWP+hvpiymmmUeGcVyGyC/k6vFjpUH5BcwDryPlERYtz7yuECG60H4=','pdp','bio'),(4,'test3','test3@gmail.com','az3rz5wt3p0+iQfKBHGhew==','3WxZm8ZK3Qd232JlsuSXNmBXXqVMg3hlwYghAx9SPo8avQS/UeUzOmgkKXGTfJOlPFAPbONfo5gVSPSrT6QtK0Rh3J3sqlD6mwO7sBy6gqMT1K9e6nESiyrKTwtyFqa6mclc9Df9JYQR+HAsHCHbrBzl6iNGPjH6Po4biPpzFXA=',NULL,NULL);
+INSERT INTO `Utilisateurs` VALUES (1,'test','felous77@gmail.com','GolV11uf0MukzB4DvohvHw==','izdOW6WLfkdepgP8vjJ8A+hjba5IGwy4Z/7nGU4d5Mv00aeHfGn+aYtI+ZOjl5QQL+rQPVekDpM1/OKJzAl9WLtxPqx/pG+WyH/+RBUMum4+3Y9iHaMKvI4UFrIlEpNv69bPib/UB16l7+6jPiwyCPqa6IXypwcjpIpEcfmdFog=','chien.png','empty'),(2,'test1','email','nkpPE/+XVzHGPD8ev3+JqQ==','LfQsNCNZz8UT+PZwZMgZ4n9PTUHE7ddW6y0ftjZ0r7j7FeQEhOxvxRGuh/0O0rjkljxGpPiz/D5iSypnOw53hOlY+2oyTcmDPpk5zav1v5KcRak2IAkMCGJelNQ8yWjPOJLF6IIoRY4HPij4yz39780BuZOZV2B9eF6klFDA7Y8=','pdp','bio'),(3,'test2','test2@gmail.com','BoByRo2rSafmLMGA2qizjw==','f/Z7uM98W3rG6wHgvJOXuDbu4vNcrN+3z9jDvj+HZVSre6W7mI5jLYBqmHc6Lid0saq9e8UjjJXEiuBp0RROSu6K3rGIVeTO9yMmH/VTx9ExW/8gu6DfFaWP+hvpiymmmUeGcVyGyC/k6vFjpUH5BcwDryPlERYtz7yuECG60H4=','pdp','bio'),(4,'test3','test3@gmail.com','az3rz5wt3p0+iQfKBHGhew==','3WxZm8ZK3Qd232JlsuSXNmBXXqVMg3hlwYghAx9SPo8avQS/UeUzOmgkKXGTfJOlPFAPbONfo5gVSPSrT6QtK0Rh3J3sqlD6mwO7sBy6gqMT1K9e6nESiyrKTwtyFqa6mclc9Df9JYQR+HAsHCHbrBzl6iNGPjH6Po4biPpzFXA=',NULL,NULL),(5,'test3','test3@gmail.com','hBRLxxLKEOiP3B7B2Z5z5Q==','gHa9QXwcBnXzRGHUhGPPoXTsZ0iJZOKBjez61J5/MW0VHtWxz5vZEUa/rjwUWJ3NUsN97YrZNSKw7RmHQZ1wMmoIe7Ev+ibYKoBCfQyuRT7NrRu0+C+4+5ovadnIXheYu/rvclPcNU39MKcmqR2vjFkNHH4uB09uGRI9SsMNx9I=',NULL,NULL),(6,'test5','test5@gmail.com','pTeI2rs6kPzNgJP784SBgA==','vpR4bZtHUXDRmP5o3/MptZV3iZT8aO+mivT7q3PvNOT6mNG2O0awx7Jhbjp/R1WI/FWzm+ZhJOMGnRgFs3r7jC3R6KfxLf1RcGl6ldv/bWoKVQWsXnWWkyUPSSBnXLsOZVhDPTdMTOZdgdNkU2tJsSDLNK9cDJDPHipwx/2y7Ag=',NULL,NULL),(7,'test6','test6@gmail.com','7EzI7Ud9iFXrFvfNRd4oUw==','aUfypnir6bipLu3+RuEizrAZCVvyk9e6Xr4UYR7KBMFr+j2maLMmt2t/qFwdXL5zwe95qiRCyyao7YIKLodGKHrPkYkucreycekxvJlegfXxMLl9c/DkHmS8WZ+DQ3XTOMngOU5/vuwlYvR8RNJXJ6xlooYWr6ER7NK7oitrx0w=',NULL,NULL),(8,'test7','test7@gmail.com','TsoKDDCyZtp/hqY/RmCsgQ==','5X8TJLuTY1ECP09ZHR5UcqwrkTFWfIa2BZMSIIjluonhOjHTv8wm8uMtehB7c5+E2TaK0PAdl2FHcVjqgkpwwTEkGFsII09QHhMPMOFZca3ope5pesAX0bvwsNTyfwj2mTO9XkQKc88Pzq07V/9ZWRwmMn0mHjM70+q8ASitccw=',NULL,NULL);
 /*!40000 ALTER TABLE `Utilisateurs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -126,4 +126,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-24 11:31:47
+-- Dump completed on 2020-06-06 15:15:22
