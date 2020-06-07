@@ -4,23 +4,34 @@ import axios from "axios";
 
 import "./style/chat.css";
 import User from "./User";
+import Config from "./Config";
 
 export class Chat extends Component {
   constructor(props) {
-    // super(props);
-    // this.toId = new URLSearchParams(props.location.search).get("to");
+    super(props);
+    this.toId = new URLSearchParams(props.location.search).get("to");
     // // room
     // this.room =
     //   User.getId() < this.toId
     //     ? User.getId() + ":" + this.toId
     //     : this.toId + ":" + User.getId();
     // // state
-    // this.state = {
-    //   message: "",
-    //   messages: []
-    // };
-    // // io
-    // this.socket = io("localhost:8080");
+    this.state = {
+      message: "",
+      messages: []
+    };
+
+    // création de la connexion 
+    this.socket = new WebSocket("ws://localhost:8080/TalkAboutEvents/chat");
+
+    this.socket.addEventListener("message", async (event) => {
+      const message = JSON.parse(event.data);
+      console.log("new message : " + message.message);
+      this.addMessage(message);
+    })
+
+    // io
+    // this.socket = io("localhost:8080/TalkAboutEvents/chat");
     // this.socket.emit("suscribe", this.room);
     // this.socket.on("message", message => {
     //   this.addMessage(message);
@@ -37,13 +48,19 @@ export class Chat extends Component {
 
   componentDidUpdate() {
     // on scroll jusqu'au message le plus recent
-    let scroll = document.getElementById("chatMessages");
-    scroll.scrollTop = scroll.scrollHeight;
+    // let scroll = document.getElementById("chatMessages");
+    // scroll.scrollTop = scroll.scrollHeight;
   }
 
   // send the message to the room
   handleSubmit = e => {
     e.preventDefault();
+    const toSend = {
+      from: User.getId(),
+      to: this.toId,
+      message: this.state.message
+    };
+    this.socket.send(JSON.stringify(toSend));
     // this.socket.emit("message", {
     //   room: this.room,
     //   from: User.getId(),
@@ -51,9 +68,9 @@ export class Chat extends Component {
     //   to: this.toId,
     //   message: this.state.message
     // });
-    // this.setState({
-    //   message: ""
-    // });
+    this.setState({
+      message: ""
+    });
   };
 
   handleChange = e => {
@@ -74,21 +91,21 @@ export class Chat extends Component {
       <div className="chatParent">
         <div className="chatMessages" id="chatMessages">
           {this.state.messages.map((message, i) => {
-            return message.from === User.getId() ? (
+            return parseInt(message.from) === User.getId() ? (
               <div className="chatMe" key={i}>
-                <p className="chatMeMessage"> {message.message} </p>{" "}
-                <img src={message.picture} alt="" className="chatMePicture" />
+                <p className="chatMeMessage"> {message.message} </p>
+                {/* <img src={message.picture} alt="" className="chatMePicture" /> */}
               </div>
             ) : (
-              <div className="chatOther" key={i}>
-                <img
-                  src={message.picture}
-                  alt=""
-                  className="chatOtherPicture"
-                />
-                <p className="chatOtherMessage"> {message.message} </p>{" "}
-              </div>
-            );
+                <div className="chatOther" key={i}>
+                  {/* <img
+                    src={message.picture}
+                    alt=""
+                    className="chatOtherPicture"
+                  /> */}
+                  <p className="chatOtherMessage"> {message.message} </p>{" "}
+                </div>
+              );
           })}
         </div>
         <form onSubmit={this.handleSubmit}>

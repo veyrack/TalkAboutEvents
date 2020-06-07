@@ -42,7 +42,7 @@
   
   <servlet>
     <servlet-name>servlet_users</servlet-name>
-    <servlet-class>user.servlets.Users_svlt</servlet-class>
+    <servlet-class>user.Users_svlt</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>servlet_users</servlet-name>
@@ -58,4 +58,5 @@
     <servlet-name>servlet_search_event</servlet-name>
     <url-pattern>/events</url-pattern>
   </servlet-mapping>
+  
 </web-app>

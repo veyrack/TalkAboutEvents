@@ -1,4 +1,4 @@
-package user.servlets;
+package user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +20,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import db.DBUser;
-import user.User;
 
 @WebServlet("/Users_svlt")
 public class Users_svlt extends HttpServlet {
@@ -63,7 +62,7 @@ public class Users_svlt extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			} else {
 				User user = (User) session.getAttribute("user");
-				logger.debug("check session : ok, user " + user.getId());
+//				logger.debug("check session : ok, user " + user.getId());
 				response.setStatus(HttpServletResponse.SC_OK);
 				out.println(gson.toJson(user));
 			}

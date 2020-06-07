@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Button, Image } from "react-bootstrap";
 
 import Config from "./Config";
 
@@ -91,12 +92,30 @@ export class Events extends Component {
                       {event.name}
                     </div>
                   </a>
+                  {/* <div>
+                    {
+                      event.attractions.map((image, i) => {
+                        return <Image
+                          src={image.url}
+                        />
+                      })
+                    }
+                  </div> */}
                   <Button variant="dark">
                     Participé
                 </Button>
-                  <Button variant="success">
-                    Chat
-                  </Button>
+                  <Link
+                    to={{
+                      pathname: "/chat",
+                      search: "?to=" + event.id
+                    }}
+                    className="link"
+                    key={i}
+                  >
+                    <Button>
+                      Chat
+                    </Button>
+                  </Link>
                 </div>
               )
             })
