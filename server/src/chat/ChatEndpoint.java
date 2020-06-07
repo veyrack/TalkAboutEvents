@@ -2,7 +2,9 @@ package chat;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.websocket.EncodeException;
@@ -11,48 +13,57 @@ import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-@ServerEndpoint(value = "/chat", encoders = MessageEncoder.class, decoders = MessageDecoder.class)
+@ServerEndpoint(value = "/chat/{room}", encoders = MessageEncoder.class, decoders = MessageDecoder.class)
 public class ChatEndpoint {
 
 	private static final Logger logger = LogManager.getLogger(ChatEndpoint.class);
 
-	private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
+	private static Map<String, Set<Session>> rooms = Collections.synchronizedMap(new HashMap<String, Set<Session>>());
 
 	@OnOpen
-	public void onOpen(Session session) throws IOException {
-		logger.debug(String.format("%s joined the chat room.", session.getId()));
-		peers.add(session);
+	public void onOpen(Session session, @PathParam("room") String room) throws IOException {
+		// on vérifie si la room existe déjà
+		if (rooms.containsKey(room)) { // la room existe déjà, on ajoute la session dedans
+			logger.debug("Un utilisateur rejoint la room : " + room);
+			rooms.get(room).add(session);
+		} else { // la room n'existe pas
+					// on créer la room
+			logger.debug("Création de la room : " + room);
+			Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
+			rooms.put(room, peers);
+			// on ajoute la session dedans
+			logger.debug("Un utilisateur rejoint la room : " + room);
+			peers.add(session);
+		}
 	}
 
 	@OnMessage
 	public void onMessage(Session session, Message message) throws IOException, EncodeException {
-		// broadcast the message
 		logger.debug("Message reçu : (from :  " + message.getFrom() + ", to : " + message.getTo() + "), content : "
 				+ message.getMessage());
-		for (Session peer : peers) {
-//			if (!session.getId().equals(peer.getId())) { // do not resend the message to its sender
+		String room = message.getTo();
+		for (Session peer : rooms.get(room)) {
+			// envoie du message à tout les membres de la room
 			peer.getBasicRemote().sendObject(message);
-//			}
 		}
 	}
 
 	@OnClose
-	public void onClose(Session session) throws IOException, EncodeException {
-		logger.debug(String.format("%s left the chat room.", session.getId()));
-		peers.remove(session);
-		// notify peers about leaving the chat room
-//		for (Session peer : peers) {
-//			Message message = new Message();
-//			message.setSender("Server");
-//			message.setContent(format("%s left the chat room", (String) session.getUserProperties().get("user")));
-//			message.setReceived(new Date());
-//			peer.getBasicRemote().sendObject(message);
-//		}
+	public void onClose(Session session, @PathParam("room") String room) throws IOException, EncodeException {
+		logger.debug("Un utilisateur part de la room : " + room);
+		// on supprime la session de la room
+		rooms.get(room).remove(session);
+		// si la room est vide on la supprime
+		if (rooms.get(room).isEmpty()) {
+			logger.debug("La room " + room + " est vide, suppression.");
+			rooms.remove(room);
+		}
 	}
 
 	@OnError

@@ -22,11 +22,10 @@ export class Chat extends Component {
     };
 
     // création de la connexion 
-    this.socket = new WebSocket("ws://localhost:8080/TalkAboutEvents/chat");
+    this.socket = new WebSocket("ws://localhost:8080/TalkAboutEvents/chat/" + this.toId);
 
     this.socket.addEventListener("message", async (event) => {
       const message = JSON.parse(event.data);
-      console.log("new message : " + message.message);
       this.addMessage(message);
     })
 
