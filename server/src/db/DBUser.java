@@ -52,6 +52,14 @@ public class DBUser {
 		}
 	}
 	
+	public static void deleteUser(User user) throws SQLException {
+		DbHandler db = new DbHandler();
+		db.loadDb();
+		Connection conn = db.getConn();
+		Statement st = conn.createStatement();
+		st.executeQuery("DELETE FROM Utilisateurs WHERE id = "+ user.getId() + "");
+	}
+	
 	public static void SuscribeTo(Integer idUser, String idEnt) throws SQLException {
 		DbHandler db = new DbHandler();
 		db.loadDb();
