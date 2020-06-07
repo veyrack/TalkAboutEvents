@@ -26,6 +26,9 @@ export class Chat extends Component {
 
     this.socket.addEventListener("message", async (event) => {
       const message = JSON.parse(event.data);
+      const user = await this.getUser(message.from);
+      message.from_pseudo = user.pseudo;
+      message.from_pdp = user.pdp;
       this.addMessage(message);
     })
 
@@ -85,6 +88,13 @@ export class Chat extends Component {
     });
   };
 
+  getUser = async id => {
+    let data = await axios.get(Config.BASE_URI + "/user",
+      { params: { id: id }, withCredentials: true }
+    );
+    return data.data;
+  }
+
   render() {
     return (
       <div className="chatParent">
@@ -93,16 +103,12 @@ export class Chat extends Component {
             return parseInt(message.from) === User.getId() ? (
               <div className="chatMe" key={i}>
                 <p className="chatMeMessage"> {message.message} </p>
-                {/* <img src={message.picture} alt="" className="chatMePicture" /> */}
+                <img src={message.from_pdp} alt="" className="chatMePicture" />
               </div>
             ) : (
                 <div className="chatOther" key={i}>
-                  {/* <img
-                    src={message.picture}
-                    alt=""
-                    className="chatOtherPicture"
-                  /> */}
-                  <p className="chatOtherMessage"> {message.message} </p>{" "}
+                  <p className="chatOtherMessage"> {message.from_pseudo + " : " + message.message} </p>
+                  <img src={message.from_pdp} alt="" className="chatOtherPicture" />
                 </div>
               );
           })}
