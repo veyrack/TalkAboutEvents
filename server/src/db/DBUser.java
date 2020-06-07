@@ -1,6 +1,7 @@
 package db;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import org.apache.log4j.Logger;
 import members.servlets.SignIn_svlt;
 import security.PwdHandler;
 import user.User;
+import db.DBEntertainment;
 
 public class DBUser {
 
@@ -48,6 +50,24 @@ public class DBUser {
 			addquery.setString(6, user.getBio());
 			addquery.executeUpdate();
 		}
+	}
+	
+	public static void SuscribeTo(Integer idUser, String idEnt) throws SQLException {
+		DbHandler db = new DbHandler();
+		db.loadDb();
+		Connection conn = db.getConn();
+		PreparedStatement addquery = conn
+				.prepareStatement("INSERT INTO Abonnement(idUser,idEnter) VALUES(?,?);");
+		addquery.setInt(1, idUser);
+		addquery.setString(2, idEnt);
+		addquery.executeUpdate();
+	}
+	public static void UnsuscribeTo(Integer idUser, String idEnt) throws SQLException {
+		DbHandler db = new DbHandler();
+		db.loadDb();
+		Connection conn = db.getConn();
+		Statement st = conn.createStatement();
+		st.executeQuery("DELETE FROM Abonnement WHERE idUser = "+ idUser + " AND idEnter = \""+idEnt+"\"");
 	}
 
 	public static Optional<ResultSet> getUser(String email) {

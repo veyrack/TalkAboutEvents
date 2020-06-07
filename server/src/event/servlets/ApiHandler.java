@@ -17,7 +17,6 @@ public class ApiHandler {
 		String contentUrl = "";
 		String tailUrl = "&locale=*";
 		for (Map.Entry<String, String[]> entry : params.entrySet()) {
-	        System.out.println(entry.getKey() + ":" + entry.getValue()[0]);
 	        contentUrl+="&"+entry.getKey()+"="+entry.getValue()[0];
 	    }
 		URL url = new URL(headUrl+contentUrl+tailUrl);

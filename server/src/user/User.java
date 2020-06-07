@@ -35,6 +35,12 @@ public class User {
 	}
 
 	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Utilisateur : "+id+","+pseudo+","+email+"";
+	}
+	
+	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
