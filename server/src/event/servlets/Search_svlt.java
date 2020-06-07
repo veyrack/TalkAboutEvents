@@ -35,7 +35,7 @@ public class Search_svlt extends HttpServlet {
 
 		logger.debug("search event, label : " + request.getParameter("label"));
 
-		String content = api.searchEventBy(request.getParameter("label"));
+		String content = api.searchEventBy(request.getParameterMap());
 
 		logger.debug("event length : " + content.length());
 

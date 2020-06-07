@@ -6,15 +6,21 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 public class ApiHandler {
 
 	private static final String apikey = "KZwJAuD9N7uusFRMfCzSR2RBPKxcA1yJ";
 
-	public String searchEventBy(String label) throws IOException {
-
-		URL url = new URL("https://app.ticketmaster.com/discovery/v1/events.json?apikey=" + apikey + "&keyword=" + label
-				+ "&locale=*");
+	public String searchEventBy(Map<String,String[]>  params) throws IOException {
+		String headUrl = "https://app.ticketmaster.com/discovery/v1/events.json?apikey=" + apikey;
+		String contentUrl = "";
+		String tailUrl = "&locale=*";
+		for (Map.Entry<String, String[]> entry : params.entrySet()) {
+	        System.out.println(entry.getKey() + ":" + entry.getValue()[0]);
+	        contentUrl+="&"+entry.getKey()+"="+entry.getValue()[0];
+	    }
+		URL url = new URL(headUrl+contentUrl+tailUrl);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 
