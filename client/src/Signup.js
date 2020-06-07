@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import "./style/signup.css"
 import { Navigbar } from "./Navigbar";
 import Config from "./Config";
 

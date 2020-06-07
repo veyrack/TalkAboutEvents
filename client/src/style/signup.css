@@ -57,13 +57,14 @@
 .form__field {
   font-family: inherit;
   border: 0;
-  border-bottom: 2px solid #f8f8f8;
+  border-bottom: 2px solid #000000;
   outline: 0;
   font-size: 1.3rem;
-  color: #fff;
+  color: rgb(0, 0, 0);
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
+  border-radius: 10px;
 }
 .form__field::placeholder {
   color: transparent;
@@ -79,12 +80,12 @@
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #ffffff;
+  color: #000000;
 }
 .form__field:focus {
   padding-bottom: 6px;
   font-weight: 500;
-  border-width: 3px;
+  border-width: 2px;
   border-image: linear-gradient(to right,gray , gray);
   border-image-slice: 1;
 }

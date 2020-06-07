@@ -38,7 +38,7 @@ export class Profil extends Component {
                   {this.state.bio}
                 </label>
                 {this.id === User.getId() ? (
-                  <Link to="/editProfil" className="link">
+                  <Link to="/editProfil" className="link ml-auto">
                     Paramètres
                   </Link>
                 ) : (
