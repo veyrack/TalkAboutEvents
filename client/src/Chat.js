@@ -43,11 +43,12 @@ export class Chat extends Component {
   }
 
   componentDidMount() {
-    // axios.get("/messages?user=" + this.toId).then(res => {
-    //   this.setState({
-    //     messages: res.data
-    //   });
-    // });
+    axios.get(Config.BASE_URI + "/messages", { params: { to: this.toId }, withCredentials: true }).then(res => {
+      console.log(res)
+      this.setState({
+        messages: res.data.messages
+      });
+    });
   }
 
   componentDidUpdate() {

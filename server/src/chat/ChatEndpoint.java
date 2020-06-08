@@ -1,6 +1,7 @@
 package chat;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,6 +19,8 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+
+import db.DBMessage;
 
 @ServerEndpoint(value = "/chat/{room}", encoders = MessageEncoder.class, decoders = MessageDecoder.class)
 public class ChatEndpoint {
@@ -51,6 +54,12 @@ public class ChatEndpoint {
 		for (Session peer : rooms.get(room)) {
 			// envoie du message à tout les membres de la room
 			peer.getBasicRemote().sendObject(message);
+		}
+		// on stocke le message en bdd
+		try {
+			DBMessage.addMessage(message);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
