@@ -73,7 +73,7 @@ public class Search_svlt extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		Integer idUser = user.getId();
-		String idEvent = request.getParameter("idEnt");
+		String idEvent = request.getParameter("idEvent");
 		if(DBUser.getUserById(idUser).isPresent()) {
 			try {
 				DBUser.unparticipateTo(idUser, idEvent);

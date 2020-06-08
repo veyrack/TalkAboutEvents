@@ -65,20 +65,20 @@ public class DBUser {
 		db.loadDb();
 		Connection conn = db.getConn();
 		PreparedStatement addquery = conn
-				.prepareStatement("INSERT INTO Participate(idUser,idEvent) VALUES(?,?);");
+				.prepareStatement("INSERT INTO Participe(idUser,idEvent) VALUES(?,?);");
 		addquery.setInt(1, idUser);
 		addquery.setString(2, idEvent);
 		addquery.executeUpdate();
 	}
-	
+
 	public static void unparticipateTo(Integer idUser, String idEvent) throws SQLException {
 		DbHandler db = new DbHandler();
 		db.loadDb();
 		Connection conn = db.getConn();
 		Statement st = conn.createStatement();
-		st.executeQuery("DELETE FROM Participate WHERE idUser = "+ idUser + " AND idEvent = \""+idEvent+"\"");
+		st.executeUpdate("DELETE FROM Participe WHERE idUser = "+ idUser + " AND idEvent = \""+idEvent+"\"");
 	}
-	
+
 	public static void suscribeTo(Integer idUser, String idEnt) throws SQLException {
 		DbHandler db = new DbHandler();
 		db.loadDb();
@@ -94,7 +94,7 @@ public class DBUser {
 		db.loadDb();
 		Connection conn = db.getConn();
 		Statement st = conn.createStatement();
-		st.executeQuery("DELETE FROM Abonnement WHERE idUser = "+ idUser + " AND idEnter = \""+idEnt+"\"");
+		st.executeUpdate("DELETE FROM Abonnement WHERE idUser = "+ idUser + " AND idEnter = \""+idEnt+"\"");
 	}
 
 	public static Optional<ResultSet> getUser(String email) {
