@@ -3,6 +3,7 @@ package user;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import db.DBEntertainment;
 import db.DBUser;
 
 @WebServlet("/Users_svlt")
@@ -86,7 +88,6 @@ public class Users_svlt extends HttpServlet {
 		// on récupère l'objet du corp de la requête
 		String requestDataString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 		JsonObject data = JsonParser.parseString(requestDataString).getAsJsonObject();
-
 		String bio = data.get("bio") == null ? null : data.get("bio").getAsString();
 		String email = data.get("email") == null ? null : data.get("email").getAsString();
 		String pdp = data.get("pdp") == null ? null : data.get("pdp").getAsString();
@@ -94,7 +95,18 @@ public class Users_svlt extends HttpServlet {
 
 		toUpdate.setId(sessionUser.getId()).setBio(bio).setEmail(email).setPdp(pdp).setPseudo(pseudo);
 		DBUser.updateUser(sessionUser.getId(), toUpdate);
-
 	}
-
+	
+	@Override
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		try {
+			DBUser.deleteUser(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

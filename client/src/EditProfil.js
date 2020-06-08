@@ -69,6 +69,7 @@ export class EditProfil extends Component {
             id="pseudo"
             value={this.state.pseudo}
             placeholder="Pseudo ..."
+            className="editinput"
             onChange={this.handleChange}
           />
           <label>Description</label>
@@ -77,9 +78,10 @@ export class EditProfil extends Component {
             id="bio"
             value={this.state.bio}
             placeholder="Description ..."
+            className="editinput"
             onChange={this.handleChange}
           />
-          <input type="submit" />
+          <input type="submit" className="editbutton" />
         </form>
       </div>
     );

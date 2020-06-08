@@ -5,6 +5,8 @@
     padding: 2%;
     height: 85%;
     background-color: whitesmoke;
+    border: 2px solid black;
+
 }
 
 .editParent form {
@@ -21,4 +23,14 @@
 
 .editParent * {
     margin-bottom: 5%;
+}
+
+.editinput{
+    border-radius: 8px;
+    border-color: deepskyblue;
+    height: 60px;
+}
+
+.editbutton{
+    border-radius: 6px;
 }

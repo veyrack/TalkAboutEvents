@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button, Image } from "react-bootstrap";
-
+import "./style/events.css"
 import Config from "./Config";
 
 
@@ -57,9 +57,9 @@ export class Events extends Component {
 
   render() {
     return (
-      <div>
-        <div className="eventsSearch">
-          <form onSubmit={this.handleSubmit}>
+      <div className="row justify-content-center">
+        <div className="eventsSearch col-md-10 row justify-content-center">
+          <form onSubmit={this.handleSubmit} className=" inline-block">
 
             <div className="form__group field">
               <input
@@ -70,7 +70,7 @@ export class Events extends Component {
                 placeholder="mot-clé"
                 onChange={this.handleChange}
               />
-
+              <label for="mot-clé" className="form__label"><strong>Mot-Clé :</strong></label>
             </div>
             <br />
             <div>
@@ -87,16 +87,16 @@ export class Events extends Component {
 
             <input
               type="submit"
-              className="formSubmit"
+              className="formSubmit btn btn-outline-primary col-sm-12"
               onSubmit={this.handleSubmit}
             />
           </form>
         </div>
-        <div className="eventsParent">
+        <div className="eventsParent col-md-4 row justify-content-center pt-5">
           {
             this.state.events.map((event, i) => {
               return (
-                <div>
+                <div className="event w-100">
                   <a
                     href={event.eventUrl}
                   >
@@ -115,13 +115,13 @@ export class Events extends Component {
                   </div> */}
                   <Button variant="dark">
                     Participé
-                </Button>
+                  </Button>
                   <Link
                     to={{
                       pathname: "/chat",
                       search: "?to=" + event.id
                     }}
-                    className="link"
+                    className="link pl-2"
                     key={i}
                   >
                     <Button>

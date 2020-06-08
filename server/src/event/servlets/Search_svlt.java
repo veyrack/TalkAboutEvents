@@ -50,7 +50,6 @@ public class Search_svlt extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		System.out.println("HEYYYY\n");
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		Integer idUser = user.getId();
@@ -72,11 +71,12 @@ public class Search_svlt extends HttpServlet {
 			out.println(gson.toJson(Optional.empty()));
 		}
 	}
-	
+
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		Integer idUser = (Integer) session.getAttribute("id");
+		User user = (User) session.getAttribute("user");
+		Integer idUser = user.getId();
 		String idEnt = request.getParameter("idEnt");
 		if(DBUser.getUserById(idUser).isPresent() && DBEntertainment.getEntertainment(idEnt).isPresent()) {
 			try {
