@@ -8,18 +8,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class ApiHandler {
 
 	private static final String apikey = "KZwJAuD9N7uusFRMfCzSR2RBPKxcA1yJ";
 
-	public String searchEventBy(Map<String,String[]>  params) throws IOException {
-		String headUrl = "https://app.ticketmaster.com/discovery/v1/events.json?apikey=" + apikey;
+	private static final Logger logger = LogManager.getLogger(ApiHandler.class);
+
+	public String searchEventBy(Map<String, String[]> params) throws IOException {
+		String headUrl = "https://app.ticketmaster.com/discovery/v2/events?apikey=" + apikey;
 		String contentUrl = "";
 		String tailUrl = "&locale=*";
 		for (Map.Entry<String, String[]> entry : params.entrySet()) {
-	        contentUrl+="&"+entry.getKey()+"="+entry.getValue()[0];
-	    }
-		URL url = new URL(headUrl+contentUrl+tailUrl);
+			contentUrl += "&" + entry.getKey() + "=" + entry.getValue()[0];
+		}
+		URL url = new URL(headUrl + contentUrl + tailUrl);
+		logger.debug("search events : " + url);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 
