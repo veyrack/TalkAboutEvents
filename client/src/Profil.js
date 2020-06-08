@@ -5,6 +5,7 @@ import axios from "axios";
 import "./style/profil.css";
 import User from "./User";
 import Config from "./Config";
+import { Button } from "react-bootstrap";
 
 export class Profil extends Component {
   constructor(props) {

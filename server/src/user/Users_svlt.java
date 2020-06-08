@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import db.DBEntertainment;
 import db.DBUser;
 
 @WebServlet("/Users_svlt")
@@ -96,17 +95,18 @@ public class Users_svlt extends HttpServlet {
 		toUpdate.setId(sessionUser.getId()).setBio(bio).setEmail(email).setPdp(pdp).setPseudo(pseudo);
 		DBUser.updateUser(sessionUser.getId(), toUpdate);
 	}
-	
+
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
+		logger.debug("delete user " + user.getId());
 		try {
 			DBUser.deleteUser(user);
+			session.invalidate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 }

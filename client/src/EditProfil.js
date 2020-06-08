@@ -4,6 +4,7 @@ import axios from "axios";
 import "./style/editProfil.css";
 import User from "./User";
 import Config from "./Config";
+import { Button } from "react-bootstrap";
 
 export class EditProfil extends Component {
   constructor(props) {
@@ -52,6 +53,12 @@ export class EditProfil extends Component {
     });
   }
 
+  deleteUser() {
+    axios.delete(Config.BASE_URI + "/user", { withCredentials: true }).then(() => {
+      // this.props.history.push("/signin");
+    });
+  }
+
   render() {
     return (
       <div className="editParent">
@@ -83,6 +90,9 @@ export class EditProfil extends Component {
           />
           <input type="submit" className="editbutton" />
         </form>
+        <Button variant="danger" onClick={this.deleteUser} >
+          Supprimer le compte
+        </Button>
       </div>
     );
   }
