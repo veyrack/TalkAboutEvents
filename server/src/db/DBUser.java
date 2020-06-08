@@ -60,7 +60,26 @@ public class DBUser {
 		st.executeQuery("DELETE FROM Utilisateurs WHERE id = "+ user.getId() + "");
 	}
 	
-	public static void SuscribeTo(Integer idUser, String idEnt) throws SQLException {
+	public static void participateTo(Integer idUser, String idEvent) throws SQLException {
+		DbHandler db = new DbHandler();
+		db.loadDb();
+		Connection conn = db.getConn();
+		PreparedStatement addquery = conn
+				.prepareStatement("INSERT INTO Participe(idUser,idEvent) VALUES(?,?);");
+		addquery.setInt(1, idUser);
+		addquery.setString(2, idEvent);
+		addquery.executeUpdate();
+	}
+
+	public static void unparticipateTo(Integer idUser, String idEvent) throws SQLException {
+		DbHandler db = new DbHandler();
+		db.loadDb();
+		Connection conn = db.getConn();
+		Statement st = conn.createStatement();
+		st.executeUpdate("DELETE FROM Participe WHERE idUser = "+ idUser + " AND idEvent = \""+idEvent+"\"");
+	}
+
+	public static void suscribeTo(Integer idUser, String idEnt) throws SQLException {
 		DbHandler db = new DbHandler();
 		db.loadDb();
 		Connection conn = db.getConn();
@@ -70,12 +89,12 @@ public class DBUser {
 		addquery.setString(2, idEnt);
 		addquery.executeUpdate();
 	}
-	public static void UnsuscribeTo(Integer idUser, String idEnt) throws SQLException {
+	public static void unsuscribeTo(Integer idUser, String idEnt) throws SQLException {
 		DbHandler db = new DbHandler();
 		db.loadDb();
 		Connection conn = db.getConn();
 		Statement st = conn.createStatement();
-		st.executeQuery("DELETE FROM Abonnement WHERE idUser = "+ idUser + " AND idEnter = \""+idEnt+"\"");
+		st.executeUpdate("DELETE FROM Abonnement WHERE idUser = "+ idUser + " AND idEnter = \""+idEnt+"\"");
 	}
 
 	public static Optional<ResultSet> getUser(String email) {
