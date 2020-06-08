@@ -150,7 +150,7 @@ export class Signup extends Component {
             <label className="signError">{this.state.passError}</label>
           </div>
           <p>
-            <strong>Déjà un comtpe ?</strong> <Link className="signLink" to="./signin"> se connecter</Link>
+            <strong>Déjà un compte ?</strong> <Link className="signLink" to="./signin"> se connecter</Link>
           </p>
         </div>
       </div>

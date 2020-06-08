@@ -58,14 +58,14 @@ export class Events extends Component {
   render() {
     return (
       <div className="row justify-content-center">
-        <div className="eventsSearch col-md-10 row justify-content-center">
-          <form onSubmit={this.handleSubmit} className=" inline-block">
-
+        <div className="eventsSearch col-md-10 row justify-content-center recherche">
+          <form onSubmit={this.handleSubmit} className=" inline-block pt-2">
+            <h5 className="font-weight-bold">Recherche d'évènements</h5>
             <div className="form__group field">
               <input
                 type="text"
                 name="keyword"
-                className="form__field"
+                className="form__field_event"
                 value={this.state.label}
                 placeholder="mot-clé"
                 onChange={this.handleChange}
@@ -73,15 +73,16 @@ export class Events extends Component {
               <label for="mot-clé" className="form__label"><strong>Mot-Clé :</strong></label>
             </div>
             <br />
-            <div>
+            <div className="form__group field">
               <input
                 type="text"
                 name="city"
-                className="form__field"
+                className="form__field_event"
                 value={this.state.label}
                 placeholder="ville"
                 onChange={this.handleChange}
               />
+              <label for="city" className="form__label"><strong>Ville :</strong></label>
             </div>
             <br />
 
@@ -100,10 +101,11 @@ export class Events extends Component {
                   <a
                     href={event.eventUrl}
                   >
-                    <div>
+                    <div className="printevent ">
                       {event.name}
                     </div>
                   </a>
+                  <br></br>
                   {/* <div>
                     {
                       event.attractions.map((image, i) => {
