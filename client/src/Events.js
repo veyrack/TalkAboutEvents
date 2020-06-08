@@ -97,7 +97,7 @@ export class Events extends Component {
           {
             this.state.events.map((event, i) => {
               return (
-                <div className="event w-100">
+                <div className="event w-100" key={i}>
                   <a
                     href={event.eventUrl == null ? event.url : event.eventUrl}
                   >
