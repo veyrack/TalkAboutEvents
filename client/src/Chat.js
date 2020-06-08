@@ -5,6 +5,7 @@ import axios from "axios";
 import "./style/chat.css";
 import User from "./User";
 import Config from "./Config";
+import { Link } from "react-router-dom";
 
 export class Chat extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ export class Chat extends Component {
       const user = await this.getUser(message.from);
       message.from_pseudo = user.pseudo;
       message.from_pdp = user.pdp;
+      message.from_id = user.id;
       this.addMessage(message);
     })
 
@@ -107,7 +109,17 @@ export class Chat extends Component {
               </div>
             ) : (
                 <div className="chatOther" key={i}>
-                  <p className="chatOtherMessage"> {message.from_pseudo + " : " + message.message} </p>
+                  <p className="chatOtherMessage">
+                    <Link
+                      to={{
+                        pathname: "/profil",
+                        search: "?id=" + message.from_id
+                      }}
+                    >
+                      {message.from_pseudo}
+                    </Link>
+                    {" : " + message.message}
+                  </p>
                   <img src={message.from_pdp} alt="" className="chatOtherPicture" />
                 </div>
               );
