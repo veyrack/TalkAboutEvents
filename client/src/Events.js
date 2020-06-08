@@ -70,7 +70,7 @@ export class Events extends Component {
                 placeholder="mot-clé"
                 onChange={this.handleChange}
               />
-              <label for="mot-clé" className="form__label"><strong>Mot-Clé :</strong></label>
+              <label htmlFor="keyword" className="form__label"><strong>Mot-Clé :</strong></label>
             </div>
             <br />
             <div className="form__group field">
@@ -82,7 +82,7 @@ export class Events extends Component {
                 placeholder="ville"
                 onChange={this.handleChange}
               />
-              <label for="city" className="form__label"><strong>Ville :</strong></label>
+              <label htmlFor="city" className="form__label"><strong>Ville :</strong></label>
             </div>
             <br />
 
@@ -99,7 +99,7 @@ export class Events extends Component {
               return (
                 <div className="event w-100">
                   <a
-                    href={event.eventUrl}
+                    href={event.eventUrl == null ? event.url : event.eventUrl}
                   >
                     <div className="printevent ">
                       {event.name}

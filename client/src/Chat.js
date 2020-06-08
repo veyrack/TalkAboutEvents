@@ -50,8 +50,8 @@ export class Chat extends Component {
 
   componentDidUpdate() {
     // on scroll jusqu'au message le plus recent
-    // let scroll = document.getElementById("chatMessages");
-    // scroll.scrollTop = scroll.scrollHeight;
+    let scroll = document.getElementById("chatMessages");
+    scroll.scrollTop = scroll.scrollHeight;
   }
 
   // send the message to the room
