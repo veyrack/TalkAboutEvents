@@ -8,7 +8,7 @@ public class DbHandler {
 
 	private Connection conn;
 
-	public void loadDb() {
+	public DbHandler() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {

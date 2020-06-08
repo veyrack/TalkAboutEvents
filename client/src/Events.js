@@ -45,15 +45,52 @@ export class Events extends Component {
         {
           withCredentials: true,
           params: { keyword: this.state.keyword, city: this.state.city }
-        }).then(events => {
+        }).then(async events => {
+          // on récupère les evenements 
+          events = (events.data._embedded == null) ? [] : events.data._embedded.events;
+          events = await Promise.all(events.map(async (event) => {
+            let resp = await axios.get(Config.BASE_URI + "/participation",
+              {
+                withCredentials: true,
+                params: {
+                  eventId: event.id
+                }
+              }
+            );
+            event.participate = resp.data;
+            return event
+          }));
           this.setState({
-            events: (events.data._embedded == null) ? [] : events.data._embedded.events
+            events: events
           });
         });
     } catch (error) {
       console.log("ERREUR :", error);
     }
   };
+
+  handleParticipation = async (event) => {
+    await axios.post(Config.BASE_URI + "/participation",
+      {},
+      {
+        withCredentials: true,
+        params: { idEvent: event.id }
+      }
+    );
+    event.participate = true;
+    this.forceUpdate();
+  }
+
+  handleUnparticipation = async (event) => {
+    await axios.delete(Config.BASE_URI + "/participation",
+      {
+        withCredentials: true,
+        params: { idEvent: event.id }
+      }
+    );
+    event.participate = false;
+    this.forceUpdate();
+  }
 
   render() {
     return (
@@ -115,9 +152,19 @@ export class Events extends Component {
                       })
                     }
                   </div> */}
-                  <Button variant="dark">
-                    Participé
-                  </Button>
+                  {
+                    event.participate ?
+                      (
+                        <Button variant="dark" onClick={() => this.handleUnparticipation(event)}>
+                          Ne plus participé
+                        </Button>
+                      ) : (
+                        <Button variant="dark" onClick={() => this.handleParticipation(event)}>
+                          Participé
+                        </Button>
+                      )
+                  }
+
                   <Link
                     to={{
                       pathname: "/chat",

@@ -7,10 +7,9 @@ import java.sql.Statement;
 import java.util.Optional;
 
 public class DBEntertainment {
-	
-	public static Optional<ResultSet> getEntertainment(String id){
+
+	public static Optional<ResultSet> getEntertainment(String id) {
 		DbHandler db = new DbHandler();
-		db.loadDb();
 		try {
 			Connection conn = db.getConn();
 			Statement st = conn.createStatement();

@@ -12,7 +12,6 @@ public class DBMessage {
 
 	public static void addMessage(Message message) throws SQLException {
 		DbHandler db = new DbHandler();
-		db.loadDb();
 		Connection conn = db.getConn();
 		// requête
 		PreparedStatement addquery = conn
@@ -26,7 +25,6 @@ public class DBMessage {
 
 	public static ResultSet getMessages(String to_id) throws SQLException {
 		DbHandler db = new DbHandler();
-		db.loadDb();
 		Connection conn = db.getConn();
 		// requete
 		Statement st = conn.createStatement();

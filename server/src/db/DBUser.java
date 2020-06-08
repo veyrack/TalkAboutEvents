@@ -20,7 +20,6 @@ public class DBUser {
 
 	public static Optional<ResultSet> getUser(String email) {
 		DbHandler db = new DbHandler();
-		db.loadDb();
 		try {
 			Connection conn = db.getConn();
 			Statement st = conn.createStatement();
@@ -36,7 +35,6 @@ public class DBUser {
 
 	public static Optional<ResultSet> getUserById(int id) {
 		DbHandler db = new DbHandler();
-		db.loadDb();
 		try {
 			Connection conn = db.getConn();
 			Statement st = conn.createStatement();
@@ -51,7 +49,6 @@ public class DBUser {
 
 	public static void AddUser(User user) throws SQLException {
 		DbHandler db = new DbHandler();
-		db.loadDb();
 		Connection conn = db.getConn();
 		PwdHandler pwd = new PwdHandler();
 		String salt = pwd.generateSalt();
@@ -83,7 +80,6 @@ public class DBUser {
 
 	public static void updateUser(int id, User user) {
 		DbHandler db = new DbHandler();
-		db.loadDb();
 
 		try {
 			logger.debug("update user " + id);
@@ -126,7 +122,6 @@ public class DBUser {
 
 	public static void deleteUser(User user) throws SQLException {
 		DbHandler db = new DbHandler();
-		db.loadDb();
 		Connection conn = db.getConn();
 		Statement st = conn.createStatement();
 		st.executeQuery("DELETE FROM Utilisateurs WHERE id = " + user.getId() + "");
