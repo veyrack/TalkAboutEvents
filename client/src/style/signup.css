@@ -11,7 +11,7 @@
 
 /* form box */
 .formBox {
-  background-color: rgb(49, 195, 202);
+  background-color: rgb(200, 230, 255);
   border-radius: 25px;
 }
 
@@ -50,7 +50,7 @@
 /*--- Partie pour les entrées de formulaire ---*/
 .form__group {
   position: relative;
-  padding: 15px 0 0;
+  padding: 20px 0 0;
   margin-top: 10px;
 
 }
@@ -62,6 +62,7 @@
   font-size: 1.3rem;
   color: rgb(0, 0, 0);
   padding: 7px 0;
+  padding-left: 5px;
   background: transparent;
   transition: border-color 0.2s;
   border-radius: 10px;
@@ -86,7 +87,7 @@
   padding-bottom: 6px;
   font-weight: 500;
   border-width: 2px;
-  border-image: linear-gradient(to right,gray , gray);
+  border-image: linear-gradient(to right,rgb(0, 0, 0) , rgb(0, 0, 0));
   border-image-slice: 1;
 }
 .form__field:focus ~ .form__label {
@@ -95,7 +96,7 @@
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: gray;
+  color: rgb(0, 0, 0);
   font-weight: 500;
 }
 /* reset input */

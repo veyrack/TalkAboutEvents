@@ -3,11 +3,11 @@
 /*--- Partie pour les entrées de formulaire ---*/
 .form__group {
   position: relative;
-  padding: 15px 0 0;
+  padding: 20px 0 0;
   margin-top: 10px;
 
 }
-.form__field {
+.form__field_event {
   font-family: inherit;
   border: 0;
   border-bottom: 2px solid #000000;
@@ -15,14 +15,15 @@
   font-size: 1.3rem;
   color: #000000;
   padding: 7px 0;
-  padding-left: 5px;
+  padding-left: 25px;
   background: transparent;
   transition: border-color 0.2s;
+  border-radius: 10px;
 }
-.form__field::placeholder {
+.form__field_event::placeholder {
   color: transparent;
 }
-.form__field:placeholder-shown ~ .form__label {
+.form__field_event:placeholder-shown ~ .form__label {
   font-size: 1.3rem;
   cursor: text;
   top: 20px;
@@ -36,14 +37,14 @@
   font-size: 1rem;
   color: #000000;
 }
-.form__field:focus {
+.form__field_event:focus {
   padding-bottom: 6px;
   font-weight: 500;
   border-width: 2px;
   border-image: linear-gradient(to right, #000000 , #000000);
   border-image-slice: 1;
 }
-.form__field:focus ~ .form__label {
+.form__field_event:focus ~ .form__label {
   position: absolute;
   top: 0;
   display: block;
@@ -53,7 +54,7 @@
   font-weight: 500;
 }
 /* reset input */
-.form__field:required, .form__field:invalid {
+.form__field_event:required, .form__field_event:invalid {
   box-shadow: none;
 }
 
@@ -69,4 +70,13 @@
 .mcbutton{
   padding: 5px 24px;
   vertical-align: middle;
+}
+
+.recherche{
+  border: 2px solid #000000;
+  padding-bottom: 10px;
+}
+
+.printevent{
+  background-color: aliceblue;
 }
