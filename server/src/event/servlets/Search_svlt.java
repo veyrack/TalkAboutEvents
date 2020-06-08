@@ -53,14 +53,11 @@ public class Search_svlt extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		Integer idUser = user.getId();
-		String idEnt = request.getParameter("idEnt");
-		PrintWriter out = response.getWriter();
-		Gson gson = new Gson();
-		if(DBUser.getUserById(idUser).isPresent() && DBEntertainment.getEntertainment(idEnt).isPresent()) {
+		String idEvent = request.getParameter("idEvent");
+		if(DBUser.getUserById(idUser).isPresent()) {
 			try {
-				DBUser.SuscribeTo(idUser, idEnt);
+				DBUser.participateTo(idUser, idEvent);
 				response.setStatus(HttpServletResponse.SC_OK);
-				out.println(gson.toJson(Optional.of(""+idUser+" suscribe to "+idEnt)));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -68,7 +65,6 @@ public class Search_svlt extends HttpServlet {
 		}
 		else {
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-			out.println(gson.toJson(Optional.empty()));
 		}
 	}
 
@@ -77,10 +73,10 @@ public class Search_svlt extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		Integer idUser = user.getId();
-		String idEnt = request.getParameter("idEnt");
-		if(DBUser.getUserById(idUser).isPresent() && DBEntertainment.getEntertainment(idEnt).isPresent()) {
+		String idEvent = request.getParameter("idEnt");
+		if(DBUser.getUserById(idUser).isPresent()) {
 			try {
-				DBUser.UnsuscribeTo(idUser, idEnt);
+				DBUser.unparticipateTo(idUser, idEvent);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
