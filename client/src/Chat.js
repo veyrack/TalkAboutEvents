@@ -110,6 +110,7 @@ export class Chat extends Component {
               </div>
             ) : (
                 <div className="chatOther" key={i}>
+                  <img src={message.from_pdp} alt="" className="chatOtherPicture" />
                   <p className="chatOtherMessage">
                     <Link
                       to={{
@@ -121,7 +122,6 @@ export class Chat extends Component {
                     </Link>
                     {" : " + message.message}
                   </p>
-                  <img src={message.from_pdp} alt="" className="chatOtherPicture" />
                 </div>
               );
           })}
