@@ -10,7 +10,8 @@ export class Events extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      label: "",
+      keyword: "",
+      city: "",
       events: []
     };
   }
@@ -43,7 +44,7 @@ export class Events extends Component {
       axios.get(Config.BASE_URI + "/events",
         {
           withCredentials: true,
-          params: { label: this.state.label }
+          params: { keyword: this.state.keyword, city: this.state.city }
         }).then(events => {
           this.setState({
             events: (events.data._embedded == null) ? [] : events.data._embedded.events
@@ -63,13 +64,24 @@ export class Events extends Component {
             <div className="form__group field">
               <input
                 type="text"
-                name="label"
+                name="keyword"
                 className="form__field"
                 value={this.state.label}
                 placeholder="mot-clé"
                 onChange={this.handleChange}
               />
 
+            </div>
+            <br />
+            <div>
+              <input
+                type="text"
+                name="city"
+                className="form__field"
+                value={this.state.label}
+                placeholder="ville"
+                onChange={this.handleChange}
+              />
             </div>
             <br />
 
