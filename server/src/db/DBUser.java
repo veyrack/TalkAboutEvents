@@ -1,7 +1,6 @@
 package db;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,14 +10,44 @@ import java.util.Optional;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import members.servlets.SignIn_svlt;
+import members.SignIn_svlt;
 import security.PwdHandler;
 import user.User;
-import db.DBEntertainment;
 
 public class DBUser {
 
 	private static final Logger logger = LogManager.getLogger(SignIn_svlt.class);
+
+	public static Optional<ResultSet> getUser(String email) {
+		DbHandler db = new DbHandler();
+		db.loadDb();
+		try {
+			Connection conn = db.getConn();
+			Statement st = conn.createStatement();
+			ResultSet res = st.executeQuery("select * from Utilisateurs where email = \"" + email + "\"");
+			if (res.next())
+				return Optional.of(res);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Optional.empty();
+	}
+
+	public static Optional<ResultSet> getUserById(int id) {
+		DbHandler db = new DbHandler();
+		db.loadDb();
+		try {
+			Connection conn = db.getConn();
+			Statement st = conn.createStatement();
+			ResultSet res = st.executeQuery("select * from Utilisateurs where id = \"" + id + "\"");
+			if (res.next())
+				return Optional.of(res);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Optional.empty();
+	}
 
 	public static void AddUser(User user) throws SQLException {
 		DbHandler db = new DbHandler();
@@ -50,82 +79,6 @@ public class DBUser {
 			addquery.setString(6, user.getBio());
 			addquery.executeUpdate();
 		}
-	}
-	
-	public static void deleteUser(User user) throws SQLException {
-		DbHandler db = new DbHandler();
-		db.loadDb();
-		Connection conn = db.getConn();
-		Statement st = conn.createStatement();
-		st.executeQuery("DELETE FROM Utilisateurs WHERE id = "+ user.getId() + "");
-	}
-	
-	public static void participateTo(Integer idUser, String idEvent) throws SQLException {
-		DbHandler db = new DbHandler();
-		db.loadDb();
-		Connection conn = db.getConn();
-		PreparedStatement addquery = conn
-				.prepareStatement("INSERT INTO Participe(idUser,idEvent) VALUES(?,?);");
-		addquery.setInt(1, idUser);
-		addquery.setString(2, idEvent);
-		addquery.executeUpdate();
-	}
-
-	public static void unparticipateTo(Integer idUser, String idEvent) throws SQLException {
-		DbHandler db = new DbHandler();
-		db.loadDb();
-		Connection conn = db.getConn();
-		Statement st = conn.createStatement();
-		st.executeUpdate("DELETE FROM Participe WHERE idUser = "+ idUser + " AND idEvent = \""+idEvent+"\"");
-	}
-
-	public static void suscribeTo(Integer idUser, String idEnt) throws SQLException {
-		DbHandler db = new DbHandler();
-		db.loadDb();
-		Connection conn = db.getConn();
-		PreparedStatement addquery = conn
-				.prepareStatement("INSERT INTO Abonnement(idUser,idEnter) VALUES(?,?);");
-		addquery.setInt(1, idUser);
-		addquery.setString(2, idEnt);
-		addquery.executeUpdate();
-	}
-	public static void unsuscribeTo(Integer idUser, String idEnt) throws SQLException {
-		DbHandler db = new DbHandler();
-		db.loadDb();
-		Connection conn = db.getConn();
-		Statement st = conn.createStatement();
-		st.executeUpdate("DELETE FROM Abonnement WHERE idUser = "+ idUser + " AND idEnter = \""+idEnt+"\"");
-	}
-
-	public static Optional<ResultSet> getUser(String email) {
-		DbHandler db = new DbHandler();
-		db.loadDb();
-		try {
-			Connection conn = db.getConn();
-			Statement st = conn.createStatement();
-			ResultSet res = st.executeQuery("select * from Utilisateurs where email = \"" + email + "\"");
-			if (res.next())
-				return Optional.of(res);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return Optional.empty();
-	}
-
-	public static Optional<ResultSet> getUserById(int id) {
-		DbHandler db = new DbHandler();
-		db.loadDb();
-		try {
-			Connection conn = db.getConn();
-			Statement st = conn.createStatement();
-			ResultSet res = st.executeQuery("select * from Utilisateurs where id = \"" + id + "\"");
-			if (res.next())
-				return Optional.of(res);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return Optional.empty();
 	}
 
 	public static void updateUser(int id, User user) {
@@ -169,6 +122,14 @@ public class DBUser {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void deleteUser(User user) throws SQLException {
+		DbHandler db = new DbHandler();
+		db.loadDb();
+		Connection conn = db.getConn();
+		Statement st = conn.createStatement();
+		st.executeQuery("DELETE FROM Utilisateurs WHERE id = " + user.getId() + "");
 	}
 
 }

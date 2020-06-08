@@ -14,7 +14,7 @@
   
   <servlet>
     <servlet-name>servlet_signin</servlet-name>
-    <servlet-class>members.servlets.SignIn_svlt</servlet-class>
+    <servlet-class>members.SignIn_svlt</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>servlet_signin</servlet-name>
@@ -23,7 +23,7 @@
   
    <servlet>
     <servlet-name>servlet_signout</servlet-name>
-    <servlet-class>members.servlets.SignOut_svlt</servlet-class>
+    <servlet-class>members.SignOut_svlt</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>servlet_signout</servlet-name>
@@ -33,7 +33,7 @@
   
   <servlet>
     <servlet-name>servlet_signup</servlet-name>
-    <servlet-class>members.servlets.SignUp_svlt</servlet-class>
+    <servlet-class>members.SignUp_svlt</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>servlet_signup</servlet-name>
@@ -60,11 +60,20 @@
   
   <servlet>
     <servlet-name>servlet_search_event</servlet-name>
-    <servlet-class>event.servlets.Search_svlt</servlet-class>
+    <servlet-class>event.Search_svlt</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>servlet_search_event</servlet-name>
     <url-pattern>/events</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>servlet_participation</servlet-name>
+    <servlet-class>participation.Participation_svlt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servlet_participation</servlet-name>
+    <url-pattern>/participation</url-pattern>
   </servlet-mapping>
   
 </web-app>
