@@ -19,12 +19,19 @@ import com.google.gson.JsonObject;
 import db.DBMessage;
 import user.Users_svlt;
 
+/**
+ * Servlet pour les Messages
+ */
 @WebServlet("/Messages_svlt")
 public class Messages_svlt extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private final org.apache.log4j.Logger logger = LogManager.getLogger(Users_svlt.class);
 
+	/**
+	 * Recupère tout les messages d'un salon depuis la bdd la requete doit contenir
+	 * un parametre "to" contenant l'id du salon
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -37,6 +44,8 @@ public class Messages_svlt extends HttpServlet {
 		try {
 			ResultSet res = DBMessage.getMessages(request.getParameter("to"));
 
+			// on convertis tout les resultats (messages) en json et renvoie un tableau
+			// d'objets json
 			JsonArray jsonArray = new JsonArray();
 			while (res.next()) {
 				int nb_col = res.getMetaData().getColumnCount();

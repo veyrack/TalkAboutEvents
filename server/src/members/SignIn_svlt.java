@@ -23,23 +23,20 @@ import security.PwdHandler;
 import user.User;
 
 /**
- * Servlet implementation class SignIn_svlt
+ * Servlet pour la connexion
  */
 @WebServlet("/SignIn_svlt")
 public class SignIn_svlt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = LogManager.getLogger(SignIn_svlt.class);
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public SignIn_svlt() {
 		super();
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * Essaie de connecté l'utilisateur, les parametres "email" et "mdp" doivent
+	 * etre passés
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

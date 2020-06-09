@@ -14,10 +14,20 @@ import members.SignIn_svlt;
 import security.PwdHandler;
 import user.User;
 
+/**
+ * Gère les requetes a la bdd concernant les utilisateurs
+ *
+ */
 public class DBUser {
 
 	private static final Logger logger = LogManager.getLogger(SignIn_svlt.class);
 
+	/**
+	 * Retourne un utilisateur a partir de son email, si il n'existe pas retourne
+	 * empty
+	 * 
+	 * @param email email de l'utilisateur
+	 */
 	public static Optional<ResultSet> getUser(String email) {
 		DbHandler db = new DbHandler();
 		try {
@@ -33,6 +43,11 @@ public class DBUser {
 		return Optional.empty();
 	}
 
+	/**
+	 * Recupère un utilisateur a partir de son id, si il n'existe pas renvoie empty
+	 * 
+	 * @param id id de l'utilisateur
+	 */
 	public static Optional<ResultSet> getUserById(int id) {
 		DbHandler db = new DbHandler();
 		try {
@@ -47,11 +62,17 @@ public class DBUser {
 		return Optional.empty();
 	}
 
+	/**
+	 * Ajoute un nouvel utilisateur
+	 * 
+	 * @param user utilisateur a ajouté
+	 */
 	public static void AddUser(User user) throws SQLException {
 		DbHandler db = new DbHandler();
 		Connection conn = db.getConn();
 		PwdHandler pwd = new PwdHandler();
 		String salt = pwd.generateSalt();
+		// on hash le mdp
 		Optional<String> hashedPwdOpt = pwd.hashPwd(user.getMdp(), salt);
 		String hashedPwd;
 		if (hashedPwdOpt.isPresent()) {
@@ -63,21 +84,18 @@ public class DBUser {
 			addquery.setString(3, hashedPwd);
 			addquery.setString(4, salt);
 			// on recupère la pdp par défaut
-//			String base64 = null;
-//			try {
-//
-//				base64 = DatatypeConverter
-//						.printBase64Binary(Files.readAllBytes(Paths.get("WebContent/WEB-INF/lib/default.png")));
-//			} catch (IOException e) {
-//				logger.error(e.getMessage());
-//			}
-//			addquery.setString(5, base64);
 			addquery.setString(5, user.getPdp());
 			addquery.setString(6, user.getBio());
 			addquery.executeUpdate();
 		}
 	}
 
+	/**
+	 * Met a jour un utilisateur
+	 * 
+	 * @param id   id de l'utilisateur a mettre a jour
+	 * @param user nouvelles données de l'utilisateur
+	 */
 	public static void updateUser(int id, User user) {
 		DbHandler db = new DbHandler();
 
@@ -120,6 +138,11 @@ public class DBUser {
 		}
 	}
 
+	/**
+	 * Supprime un utilisateur
+	 * 
+	 * @param user utilisateur a supprimé
+	 */
 	public static void deleteUser(User user) throws SQLException {
 		DbHandler db = new DbHandler();
 		Connection conn = db.getConn();

@@ -60,7 +60,7 @@
   
   <servlet>
     <servlet-name>servlet_search_event</servlet-name>
-    <servlet-class>event.Search_svlt</servlet-class>
+    <servlet-class>event.Events_svlt</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>servlet_search_event</servlet-name>

@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Permet de recuperer une connexion a la bdd
+ *
+ */
 public class DbHandler {
 
 	private Connection conn;

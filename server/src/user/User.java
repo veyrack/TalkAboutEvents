@@ -2,6 +2,10 @@ package user;
 
 import java.sql.ResultSet;
 
+/**
+ * Représente un utilisateur
+ *
+ */
 public class User {
 
 	private int id;
@@ -37,9 +41,9 @@ public class User {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Utilisateur : "+id+","+pseudo+","+email+"";
+		return "Utilisateur : " + id + "," + pseudo + "," + email + "";
 	}
-	
+
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		return super.clone();

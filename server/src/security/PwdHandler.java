@@ -9,6 +9,11 @@ import java.util.Optional;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
+/**
+ * 
+ * Genre l'encryptage et la comparaison de mdps
+ *
+ */
 public class PwdHandler {
 
 	private static final SecureRandom RAND = new SecureRandom();

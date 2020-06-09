@@ -22,6 +22,10 @@ import com.google.gson.JsonParser;
 
 import db.DBUser;
 
+/**
+ * Servlet gerant les requetes sur les utilisateurs
+ *
+ */
 @WebServlet("/Users_svlt")
 public class Users_svlt extends HttpServlet {
 
@@ -33,7 +37,9 @@ public class Users_svlt extends HttpServlet {
 	}
 
 	/**
-	 * Vérifie si l'utilisateur de la session existe
+	 * Deux comportements : - si un parametre "id" est passé, on renvoie
+	 * l'utilisateur d'id id dans la bdd - sinon, on renvoie l'utilisateur de la
+	 * session de la requete
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -69,6 +75,10 @@ public class Users_svlt extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Met a jour un utilisateur en bdd un utilisateur doit etre passé dans le corps
+	 * de la requete
+	 */
 	@Override
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -95,6 +105,9 @@ public class Users_svlt extends HttpServlet {
 		DBUser.updateUser(sessionUser.getId(), toUpdate);
 	}
 
+	/**
+	 * Supprime l'utilisateur de la session de la requete
+	 */
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();

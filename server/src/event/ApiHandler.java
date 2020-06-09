@@ -17,6 +17,11 @@ public class ApiHandler {
 
 	private static final Logger logger = LogManager.getLogger(ApiHandler.class);
 
+	/**
+	 * Contact l'api pour récupérer des evenements a partir de filtres
+	 * 
+	 * @param params filtres, doivent correspondres au attributs de l'api
+	 */
 	public String searchEventBy(Map<String, String[]> params) throws IOException {
 		String headUrl = "https://app.ticketmaster.com/discovery/v2/events?apikey=" + apikey;
 		String contentUrl = "";
@@ -50,6 +55,11 @@ public class ApiHandler {
 		return content.toString();
 	}
 
+	/**
+	 * Contact l'api pour recuperer un evenement a partir de son id
+	 * 
+	 * @param id id de l'evenement
+	 */
 	public String getEventById(String id) throws IOException {
 		String headUrl = "https://app.ticketmaster.com/discovery/v2/events/";
 		String tailUrl = "?apikey=" + apikey;

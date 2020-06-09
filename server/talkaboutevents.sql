@@ -27,8 +27,7 @@ CREATE TABLE `Abonnement` (
   `idEnter` varchar(255) NOT NULL,
   PRIMARY KEY (`idUser`,`idEnter`),
   KEY `idEnter` (`idEnter`),
-  CONSTRAINT `abonnement_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `Utilisateurs` (`id`),
-  CONSTRAINT `abonnement_ibfk_2` FOREIGN KEY (`idEnter`) REFERENCES `Entertainment` (`id`)
+  CONSTRAINT `abonnement_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `Utilisateurs` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,29 +38,6 @@ CREATE TABLE `Abonnement` (
 LOCK TABLES `Abonnement` WRITE;
 /*!40000 ALTER TABLE `Abonnement` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Abonnement` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `Entertainment`
---
-
-DROP TABLE IF EXISTS `Entertainment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Entertainment` (
-  `id` varchar(255) NOT NULL,
-  `label` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Entertainment`
---
-
-LOCK TABLES `Entertainment` WRITE;
-/*!40000 ALTER TABLE `Entertainment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Entertainment` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -77,7 +53,7 @@ CREATE TABLE `Messages` (
   `to` varchar(50) NOT NULL,
   `message` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +105,7 @@ CREATE TABLE `Utilisateurs` (
   `pdp` mediumblob,
   `bio` varchar(255) DEFAULT 'empty',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,4 +126,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-08 16:13:43
+-- Dump completed on 2020-06-09 15:25:16

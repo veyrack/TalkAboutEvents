@@ -16,7 +16,8 @@ import db.DBUser;
 import user.User;
 
 /**
- * Servlet implementation class SignUn_svlt
+ * Servlet gerant l'inscription d'un utilisateur
+ *
  */
 @WebServlet("/SignUp_svlt")
 public class SignUp_svlt extends HttpServlet {
@@ -28,6 +29,10 @@ public class SignUp_svlt extends HttpServlet {
 		super();
 	}
 
+	/**
+	 * créer un nouvel utilisateur, on doit passé les parametres "pseudo", "email",
+	 * et "mdp"
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

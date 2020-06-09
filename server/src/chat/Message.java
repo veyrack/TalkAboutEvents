@@ -1,9 +1,22 @@
 package chat;
 
+/**
+ * Message pouvant etre transmis entre le client et le serveur
+ *
+ */
 public class Message {
 
+	/**
+	 * Id de l'expediteur
+	 */
 	private String from;
+	/**
+	 * Id du salon destinataire
+	 */
 	private String to;
+	/**
+	 * contenu du message
+	 */
 	private String message;
 
 	public Message() {

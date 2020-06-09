@@ -13,18 +13,23 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 /**
- * Servlet implementation class Search_svlt
+ * Servlet pour les evenements
  */
 @WebServlet("/Search_svlt")
-public class Search_svlt extends HttpServlet {
+public class Events_svlt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger logger = LogManager.getLogger(Search_svlt.class);
+	private static final Logger logger = LogManager.getLogger(Events_svlt.class);
 
-	public Search_svlt() {
+	public Events_svlt() {
 		super();
 	}
 
+	/**
+	 * Deux comportements : - si la requete contient un parametre eventId, on
+	 * renvoie l'evenement associé a cet id - sinon, on fais une recherche
+	 * d'evenements avec les filtres donnés
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

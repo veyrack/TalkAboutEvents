@@ -8,8 +8,17 @@ import java.sql.Statement;
 
 import chat.Message;
 
+/**
+ * Gère les requetes a la bdd concernant les messages/chat
+ *
+ */
 public class DBMessage {
 
+	/**
+	 * Ajout un nouveau message
+	 * 
+	 * @param message message à ajouter
+	 */
 	public static void addMessage(Message message) throws SQLException {
 		DbHandler db = new DbHandler();
 		Connection conn = db.getConn();
@@ -23,6 +32,12 @@ public class DBMessage {
 		addquery.executeUpdate();
 	}
 
+	/**
+	 * Renvoie tout les messages d'un salon de chat (tout les messages qui ont pour
+	 * destinataire l'id du salon)
+	 * 
+	 * @param to_id id du salon
+	 */
 	public static ResultSet getMessages(String to_id) throws SQLException {
 		DbHandler db = new DbHandler();
 		Connection conn = db.getConn();

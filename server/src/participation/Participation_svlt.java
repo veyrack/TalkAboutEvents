@@ -20,11 +20,20 @@ import com.google.gson.JsonObject;
 import db.DBParticipation;
 import user.User;
 
+/**
+ * Servlet gerant la participation au evenements
+ *
+ */
 public class Participation_svlt extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private final org.apache.log4j.Logger logger = LogManager.getLogger(Participation_svlt.class);
 
+	/**
+	 * Deux comportement differents : - si un attribut idEvent est passé, regarde si
+	 * l'utilisateur participe a l'evenement donné ou pas - sinon, renvoie toute les
+	 * participations de l'utilisateur
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -66,6 +75,10 @@ public class Participation_svlt extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Créer une nouvelle participation pour l'utilisateur le parametre "idEvent"
+	 * doit etre donné
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
