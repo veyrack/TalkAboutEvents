@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import User from "./User";
 import "./style/navigbar.css";
 
+/**
+ * Barre de navigation 
+ */
 export class Navigbar extends Component {
   constructor(props) {
     super(props);
@@ -12,16 +15,13 @@ export class Navigbar extends Component {
     };
   }
 
-  handlecc = e => {
-    e.preventDefault();
-  };
-
   render() {
     return (
       <nav className="navigbar">
         <Link className="link" to="/">
           TalkAboutEvents
         </Link>
+        {/* Si on est connecté on affiche un bouton vers la page profil */}
         {this.props.islog === "true" ? (
           <Link
             className="link"
@@ -33,6 +33,7 @@ export class Navigbar extends Component {
             Profil
           </Link>
         ) : null}
+        {/* si on est connecté on affiche un bouton vers deconnection, sinon vers connection */}
         {this.props.islog === "true" ? (
           <Link className="link" to="/signout">
             Déconnexion

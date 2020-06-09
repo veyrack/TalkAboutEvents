@@ -5,6 +5,9 @@ import axios from "axios";
 import User from "./User";
 import Config from "./Config"
 
+/**
+ * Composant qui gère la deconnection
+ */
 export class Signout extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +16,7 @@ export class Signout extends Component {
     };
   }
 
+  // on deconnecte l'utilisateur
   componentDidMount() {
     User.setIsLoggedIn(false);
     axios.get(Config.BASE_URI + "/signout", { withCredentials: true }).then(() => {
@@ -26,7 +30,7 @@ export class Signout extends Component {
     return this.state.loading ? (
       <div>LOADING</div>
     ) : (
-        <Redirect to={{ pathname: "/signin" }} />
+        <Redirect to={{ pathname: "/signin" }} /> // redirection sur la page de connection
       );
   }
 }

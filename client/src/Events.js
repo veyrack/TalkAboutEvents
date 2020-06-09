@@ -5,28 +5,17 @@ import { Button, Image } from "react-bootstrap";
 import "./style/events.css"
 import Config from "./Config";
 
-
+/**
+ * Composant des evenements, permet la recherche d'evenements
+ */
 export class Events extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      keyword: "",
-      city: "",
-      events: []
+      keyword: "", // recherche par mot clé
+      city: "", // recherche par villes
+      events: [] // evenements trouvés
     };
-  }
-
-  componentDidMount() {
-    // // on recupère des informations des evenements autour
-    // axios.get(Config.BASE_URI + "/events",
-    //   {
-    //     withCredentials: true,
-    //     params: { label: this.state.label }
-    //   }).then(events => {
-    //     this.setState({
-    //       events: (events.data._embedded == null) ? [] : events.data._embedded.events
-    //     });
-    //   });
   }
 
   handleChange = event => {
@@ -40,7 +29,7 @@ export class Events extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     try {
-      // on recupère des informations des evenements autour
+      // on recupère des informations des evenements selon les filtres appliqués
       axios.get(Config.BASE_URI + "/events",
         {
           withCredentials: true,
@@ -48,6 +37,7 @@ export class Events extends Component {
         }).then(async events => {
           // on récupère les evenements 
           events = (events.data._embedded == null) ? [] : events.data._embedded.events;
+          // Pour chaque evenement, on regarde si l'utilisateur y participe ou pas et le stocke dans l'evenement
           events = await Promise.all(events.map(async (event) => {
             let resp = await axios.get(Config.BASE_URI + "/participation",
               {
@@ -60,6 +50,7 @@ export class Events extends Component {
             event.participate = resp.data;
             return event
           }));
+          // on met a jour la liste d'evenements trouvés
           this.setState({
             events: events
           });
@@ -69,6 +60,7 @@ export class Events extends Component {
     }
   };
 
+  // indique que l'utilisateur participe à un evenement 
   handleParticipation = async (event) => {
     await axios.post(Config.BASE_URI + "/participation",
       {},
@@ -78,9 +70,10 @@ export class Events extends Component {
       }
     );
     event.participate = true;
-    this.forceUpdate();
+    this.forceUpdate(); // force la mise a jour du composant 
   }
 
+  // indique que l'utilisateur ne participe plus a un evenement
   handleUnparticipation = async (event) => {
     await axios.delete(Config.BASE_URI + "/participation",
       {
@@ -89,7 +82,7 @@ export class Events extends Component {
       }
     );
     event.participate = false;
-    this.forceUpdate();
+    this.forceUpdate(); // force la mise a jour du composant
   }
 
   render() {
@@ -97,6 +90,8 @@ export class Events extends Component {
       <div className="row justify-content-center">
         <div className="eventsSearch col-md-10 row justify-content-center recherche">
           <form onSubmit={this.handleSubmit} className=" inline-block pt-2">
+
+            {/* mot clé */}
             <h5 className="font-weight-bold">Recherche d'évènements</h5>
             <div className="form__group field">
               <input
@@ -109,6 +104,8 @@ export class Events extends Component {
               />
               <label htmlFor="keyword" className="form__label"><strong>Mot-Clé :</strong></label>
             </div>
+
+            {/* ville */}
             <br />
             <div className="form__group field">
               <input
@@ -123,6 +120,7 @@ export class Events extends Component {
             </div>
             <br />
 
+            {/* envoie */}
             <input
               type="submit"
               className="formSubmit btn btn-outline-primary col-sm-12"
@@ -130,6 +128,8 @@ export class Events extends Component {
             />
           </form>
         </div>
+
+        {/* Affichage des evenements trouvés */}
         <div className="eventsParent col-md-4 row justify-content-center pt-5">
           {
             this.state.events.map((event, i) => {
@@ -143,15 +143,7 @@ export class Events extends Component {
                     </div>
                   </a>
                   <br></br>
-                  {/* <div>
-                    {
-                      event.attractions.map((image, i) => {
-                        return <Image
-                          src={image.url}
-                        />
-                      })
-                    }
-                  </div> */}
+                  {/* Affichage du bouton de participation adequat */}
                   {
                     event.participate ?
                       (
@@ -164,7 +156,7 @@ export class Events extends Component {
                         </Button>
                       )
                   }
-
+                  {/* Affichage du bouton de chat */}
                   <Link
                     to={{
                       pathname: "/chat",

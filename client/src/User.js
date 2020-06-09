@@ -1,6 +1,9 @@
 import axios from "axios";
 import Config from "./Config";
 
+/**
+ * Classe de gestion de l'utilisateur connecté
+ */
 var User = (() => {
   // attributs
   let id;

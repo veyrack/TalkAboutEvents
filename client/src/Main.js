@@ -13,6 +13,9 @@ import { EditProfil } from "./EditProfil";
 import { Chat } from "./Chat";
 import { Events } from "./Events";
 
+/**
+ * Redirige vers la bonne route 
+ */
 export class Main extends Component {
   render() {
     return (

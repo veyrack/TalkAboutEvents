@@ -5,6 +5,7 @@ import "./style/signup.css"
 import { Navigbar } from "./Navigbar";
 import Config from "./Config";
 
+// Composant d'inscription
 export class Signup extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +21,7 @@ export class Signup extends Component {
     };
   }
 
+  // gere le changement d'un camp
   handleChange = event => {
     this.setState(
       {
@@ -32,6 +34,7 @@ export class Signup extends Component {
     );
   };
 
+  // gere l'envoie du formulaire
   handleSubmit = async e => {
     e.preventDefault();
     try {
@@ -42,6 +45,7 @@ export class Signup extends Component {
           pseudo: this.state.pseudo
         }
       );
+      // on redirige sur signin
       if (response.status === 200) {
         console.log("user created");
         this.props.history.push("/signin");
@@ -51,6 +55,7 @@ export class Signup extends Component {
     }
   };
 
+  // verifie que le champ password est ok
   verifyPassword = () => {
     var passErr = "";
     if (this.state.password.length > 5) {
@@ -68,6 +73,7 @@ export class Signup extends Component {
     );
   };
 
+  // verify que le champ pseudo est ok
   verifyPseudo = () => {
     var nErr = "";
     if (this.state.pseudo.length > 3) {
@@ -85,6 +91,7 @@ export class Signup extends Component {
     );
   };
 
+  // verifie le formulaire 
   verifyForm = () => {
     const gotErr =
       this.state.passError + this.state.pseudoError === "" ? false : true;

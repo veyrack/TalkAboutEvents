@@ -7,16 +7,21 @@ import User from "./User";
 import "./style/bootstrap.min.css";
 import Config from "./Config";
 
+/**
+ * Composant de connexion
+ */
 export class Signin extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
-      formGotError: true
+      formGotError: true,
+      badCredentials: false
     };
   }
 
+  // met a jour les champs du formulaire
   handleChange = event => {
     this.setState(
       {
@@ -28,6 +33,7 @@ export class Signin extends Component {
     );
   };
 
+  // envoie le formulaire
   handleSubmit = async e => {
     e.preventDefault();
     try {
@@ -39,17 +45,23 @@ export class Signin extends Component {
         withCredentials: true
       }
       );
+      // les identifiants sont les bons 
       if (response.status === 200) {
         User.login(response.data);
         User.update().then(() => {
           this.props.history.push("/");
         });
       }
+      else
+        // erreurs d'identifiants 
+        this.setState({ badCredentials: true });
     } catch (error) {
       console.log("ERREUR :", error);
+      this.setState({ badCredentials: true });
     }
   };
 
+  // verification des champs du formulaire
   verifyForm = () => {
     const gotErr =
       this.state.email.length < 1 || this.state.password < 1 ? true : false;
@@ -99,6 +111,8 @@ export class Signin extends Component {
               disabled={this.state.formGotError}
             />
           </form>
+
+          {this.state.badCredentials ? (<p>mauvais identifiants</p>) : (<p></p>)}
 
           <p className="signLink">
             <strong>Pas encore de compte ? </strong><Link to="./signup"> en créer un </Link>

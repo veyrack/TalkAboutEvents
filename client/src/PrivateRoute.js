@@ -3,14 +3,21 @@ import User from "./User";
 import { Redirect, Route } from "react-router-dom";
 import { Navigbar } from "./Navigbar";
 
+/**
+ * Gère la sécuritée des routes
+ * si l'utilisateur est connecté (session active)
+ * on le redirige vers le composant demandé, 
+ * sinon on le redirige vers le composant signin
+ */
 class PrivateRoute extends Component {
+
   state = {
-    loading: true,
-    isLoggedIn: false
+    loading: true, // la page est en train de chargé
+    isLoggedIn: false // l'utilisateur est connecté (sessiona ctive)
   };
 
   componentDidMount() {
-    //on verifie si l'utilisateur est connecter, sinon on redirige vers /signin
+    //on verifie si l'utilisateur est connecter
     User.getIsLoggedIn().then(islog => {
       this.setState({
         loading: false,

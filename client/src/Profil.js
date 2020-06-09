@@ -7,9 +7,15 @@ import User from "./User";
 import Config from "./Config";
 import { Button } from "react-bootstrap";
 
+/**
+ * Composant profil, affiche le profil d'un utilisateur donné, 
+ * affiche un bouton de modification de profil si la page 
+ * profil est celle de l'utilsiateur courant
+ */
 export class Profil extends Component {
   constructor(props) {
     super(props);
+    // id du profil a afficher
     this.id = parseInt(
       new URLSearchParams(this.props.location.search).get("id"),
       10
