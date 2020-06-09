@@ -2,9 +2,9 @@
     margin-left: 20%;
     margin-right: 20%;
     margin-top : 1%;
-    background-color: whitesmoke;
-    height: 85%;
-    border-radius: 10px;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .profilTop {
@@ -52,4 +52,10 @@
 .profilTop .link:hover {
     color: black;
     background-color: whitesmoke;
+}
+
+.participation{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+
 }

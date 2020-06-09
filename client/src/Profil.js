@@ -105,14 +105,14 @@ export class Profil extends Component {
               </div>
 
               {/* participations */}
-              <div>
+              <div className="participation">
                 {
                   this.state.participations.map(
                     (participation, i) => {
                       return participation.event.fault == null ? // si l'appel a l'api coté serveur a fonctionner
                         // on affiche l'evenement 
                         (
-                          <div className="event w-100" key={i}>
+                          <div className="event w-100 pl-1" key={i}>
                             <a
                               href={participation.event.eventUrl == null ? participation.event.url : participation.event.eventUrl}
                             >
