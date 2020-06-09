@@ -19,11 +19,15 @@ Création de l'utilisateur talkaboutevents :
 
 Création de la bdd talkaboutevents :
 
-`CREATE DATABASE talkaboutevents`
+`CREATE DATABASE talkaboutevents;`
 
 Dons de privilèges sur la bdd :
 
 `GRANT ALL ON talkaboutevents.* TO 'talkaboutevents'@'localhost';`
+
+Se placer sur la bonne bdd :
+
+`USE talkaboutevents;`
 
 Remplissage de la bdd :
 
