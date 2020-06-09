@@ -88,7 +88,11 @@ export class Profil extends Component {
         ) : (
             <div>
               <div className="profilTop">
-                <img src={this.state.pdp} alt="" />
+                {
+                  (this.state.pdp == null) ?
+                    <img src={process.env.PUBLIC_URL + "/default.png"} alt="" /> :
+                    <img src={this.state.pdp} alt="" />
+                }
                 <div className="profilTopRight">
                   <h1 className="profilPseudo"> {this.state.pseudo} </h1>
                   <label className="profilDescription">

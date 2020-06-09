@@ -108,11 +108,19 @@ export class Chat extends Component {
             return parseInt(message.from) === User.getId() ? (
               <div className="chatMe" key={i}>
                 <p className="chatMeMessage"> {message.message} </p>
-                <img src={message.from_pdp} alt="" className="chatMePicture" />
+                {
+                  message.from_pdp == null ?
+                    <img src={process.env.PUBLIC_URL + "/default.png"} alt="" className="chatMePicture" /> :
+                    <img src={message.from_pdp} alt="" className="chatMePicture" />
+                }
               </div>
             ) : (
                 <div className="chatOther" key={i}>
-                  <img src={message.from_pdp} alt="" className="chatOtherPicture" />
+                  {
+                    message.from_pdp == null ?
+                      <img src={process.env.PUBLIC_URL + "/default.png"} alt="" className="chatOtherPicture" /> :
+                      <img src={message.from_pdp} alt="" className="chatOtherPicture" />
+                  }
                   <p className="chatOtherMessage">
                     <Link
                       to={{
