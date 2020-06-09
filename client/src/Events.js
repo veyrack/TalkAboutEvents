@@ -148,11 +148,11 @@ export class Events extends Component {
                     event.participate ?
                       (
                         <Button variant="dark" onClick={() => this.handleUnparticipation(event)}>
-                          Ne plus participé
+                          Ne plus participer
                         </Button>
                       ) : (
                         <Button variant="dark" onClick={() => this.handleParticipation(event)}>
-                          Participé
+                          Participer
                         </Button>
                       )
                   }

@@ -106,7 +106,7 @@ export class Signin extends Component {
 
             <input
               type="submit"
-              className="formSubmit"
+              className="formSubmit valider"
               onSubmit={this.handleSubmit}
               disabled={this.state.formGotError}
             />

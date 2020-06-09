@@ -145,7 +145,7 @@ export class Signup extends Component {
 
             <input
               type="submit"
-              className="formSubmit"
+              className="formSubmit valider"
               value="Creer un compte"
               disabled={this.state.formGotError}
             />

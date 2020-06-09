@@ -107,7 +107,8 @@ export class Profil extends Component {
                     )}
                 </div>
               </div>
-
+              <br/>
+              <h2>Participations aux évènements : </h2>
               {/* participations */}
               <div className="participation">
                 {
@@ -130,7 +131,7 @@ export class Profil extends Component {
                               User.getId() === this.id ?
                                 (
                                   <Button variant="dark" onClick={() => this.handleUnparticipation(participation.event)}>
-                                    Ne plus participé
+                                    Ne plus participer
                                   </Button>
                                 ) : (
                                   <p></p>
@@ -152,7 +153,7 @@ export class Profil extends Component {
                           </div>
                         )
                         :
-                        <p key={i}></p> // l'appel a l'api a echoué
+                        <div key={i}/> // l'appel a l'api a echoué
                     }
                   )
                 }
