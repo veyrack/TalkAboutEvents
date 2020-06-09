@@ -63,7 +63,6 @@ public class Users_svlt extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			} else {
 				User user = (User) session.getAttribute("user");
-//				logger.debug("check session : ok, user " + user.getId());
 				response.setStatus(HttpServletResponse.SC_OK);
 				out.println(gson.toJson(user));
 			}

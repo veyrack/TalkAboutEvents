@@ -48,6 +48,7 @@ export class Chat extends Component {
     });
   }
 
+
   /**
    * A chaque nouveau message reçu, on scroll en bas de la page
    */

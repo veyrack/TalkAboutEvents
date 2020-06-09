@@ -50,4 +50,29 @@ public class ApiHandler {
 		return content.toString();
 	}
 
+	public String getEventById(String id) throws IOException {
+		String headUrl = "https://app.ticketmaster.com/discovery/v2/events/";
+		String tailUrl = "?apikey=" + apikey;
+		URL url = new URL(headUrl + id + tailUrl);
+		logger.debug("search event : " + url);
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		int status = con.getResponseCode();
+		Reader streamReader = null;
+		if (status > 299)
+			streamReader = new InputStreamReader(con.getErrorStream());
+		else
+			streamReader = new InputStreamReader(con.getInputStream());
+
+		// recuperation du contenu de la réponse
+		BufferedReader in = new BufferedReader(streamReader);
+		StringBuffer content = new StringBuffer();
+		String currentLine;
+		while ((currentLine = in.readLine()) != null) {
+			content.append(currentLine);
+		}
+		in.close();
+		return content.toString();
+	}
+
 }

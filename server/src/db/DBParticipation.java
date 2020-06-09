@@ -10,6 +10,19 @@ public class DBParticipation {
 
 	static DbHandler db = new DbHandler();
 
+	public static ResultSet allParticipations(int idUser) {
+		Connection conn;
+		try {
+			conn = db.getConn();
+			Statement st = conn.createStatement();
+			ResultSet res = st.executeQuery("select * from Participe where idUser='" + idUser + "'");
+			return res;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static boolean isParticipating(int idUser, String idEvent) {
 
 		try {

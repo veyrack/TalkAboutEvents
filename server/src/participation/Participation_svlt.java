@@ -2,6 +2,7 @@ package participation;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.LogManager;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import db.DBParticipation;
 import user.User;
@@ -29,13 +34,36 @@ public class Participation_svlt extends HttpServlet {
 		String idEvent = request.getParameter("eventId");
 		PrintWriter out = response.getWriter();
 
-		logger.debug("check participation for user " + idUser + " at event " + idEvent);
+		if (idEvent != null) {
+			logger.debug("check participation for user " + idUser + " at event " + idEvent);
+			out.println(DBParticipation.isParticipating(idUser, idEvent));
+		} else {
+			logger.debug("get all participations for user " + idUser);
+			try {
+				ResultSet res = DBParticipation.allParticipations(idUser);
 
-		out.println(DBParticipation.isParticipating(idUser, idEvent));
-//		if (DBParticipation.isParticipating(idUser, idEvent))
-//			out.println(true);
-//		else
-//			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+				JsonArray jsonArray = new JsonArray();
+				while (res.next()) {
+					int nb_col = res.getMetaData().getColumnCount();
+					JsonObject obj = new JsonObject();
+					for (int i = 0; i < nb_col; i++) {
+						obj.add(res.getMetaData().getColumnLabel(i + 1).toLowerCase(),
+								new Gson().toJsonTree(res.getObject(i + 1)));
+					}
+					jsonArray.add(obj);
+				}
+				JsonObject toSend = new JsonObject();
+				toSend.add("participations", jsonArray);
+
+				String reString = new Gson().toJson(toSend);
+				response.setStatus(HttpServletResponse.SC_OK);
+				out.println(reString);
+			} catch (Exception e) {
+				e.printStackTrace();
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				logger.error(e.getMessage());
+			}
+		}
 	}
 
 	@Override

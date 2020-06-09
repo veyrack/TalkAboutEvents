@@ -33,9 +33,16 @@ public class Search_svlt extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		ApiHandler api = new ApiHandler();
 
-		String content = api.searchEventBy(request.getParameterMap());
-
-		out.println(content);
+		// si on a passer un event id on recupère seulement cet evenement
+		String eventId = request.getParameter("eventId");
+		if (eventId != null) {
+			String content = api.getEventById(eventId);
+			out.println(content);
+		} else {
+			// sinon on fais une recherche générale
+			String content = api.searchEventBy(request.getParameterMap());
+			out.println(content);
+		}
 	}
 
 }
