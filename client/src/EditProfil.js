@@ -63,7 +63,7 @@ export class EditProfil extends Component {
   // fonction de suppression de l'utilisateur 
   deleteUser() {
     axios.delete(Config.BASE_URI + "/user", { withCredentials: true }).then(() => {
-      // this.props.history.push("/signin");
+      window.location.href = "/signin";
     });
   }
 

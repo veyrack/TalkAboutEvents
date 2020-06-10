@@ -115,7 +115,7 @@ export class Signup extends Component {
                 placeholder="Pseudo"
                 onChange={this.handleChange}
               />
-              <label for="email" className="form__label"><strong>Pseudo :</strong></label>
+              <label htmlFor="email" className="form__label"><strong>Pseudo :</strong></label>
             </div>
 
             <div className="form__group field">
@@ -127,7 +127,7 @@ export class Signup extends Component {
                 placeholder="email@example.com"
                 onChange={this.handleChange}
               />
-              <label for="email" className="form__label"><strong>Email :</strong></label>
+              <label htmlFor="email" className="form__label"><strong>Email :</strong></label>
             </div>
 
             <div className="form__group field">
@@ -139,7 +139,7 @@ export class Signup extends Component {
                 placeholder="password"
                 onChange={this.handleChange}
               />
-              <label for="email" className="form__label"><strong>Mot de passe :</strong></label>
+              <label htmlFor="email" className="form__label"><strong>Mot de passe :</strong></label>
             </div>
             <br />
 

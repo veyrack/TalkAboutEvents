@@ -147,7 +147,7 @@ public class DBUser {
 		DbHandler db = new DbHandler();
 		Connection conn = db.getConn();
 		Statement st = conn.createStatement();
-		st.executeQuery("DELETE FROM Utilisateurs WHERE id = " + user.getId() + "");
+		st.executeUpdate("DELETE FROM Utilisateurs WHERE id = " + user.getId() + "");
 	}
 
 }

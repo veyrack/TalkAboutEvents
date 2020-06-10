@@ -27,7 +27,7 @@ CREATE TABLE `Abonnement` (
   `idEnter` varchar(255) NOT NULL,
   PRIMARY KEY (`idUser`,`idEnter`),
   KEY `idEnter` (`idEnter`),
-  CONSTRAINT `abonnement_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `Utilisateurs` (`id`)
+  CONSTRAINT `abonnement_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `Utilisateurs` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -76,7 +76,7 @@ CREATE TABLE `Participe` (
   `idUser` int(11) NOT NULL,
   `idEvent` varchar(255) NOT NULL,
   PRIMARY KEY (`idUser`,`idEvent`),
-  CONSTRAINT `participe_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `Utilisateurs` (`id`)
+  CONSTRAINT `participe_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `Utilisateurs` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
